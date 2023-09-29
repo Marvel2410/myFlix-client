@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { MovieCard } from "../components/movie-card";
+import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([
@@ -87,13 +89,26 @@ export const MainView = () => {
 
   const [selectedMovies, setSelectedMovies] = useState(null);
 
+  if (selectedMovie) {
+    return (
+      <MovieVIew movie={selectedMovie} onBackClick={() => setSelectedBook(null)} />
+    );
+  }
+  if (movies.length === 0) {
+    return <div>The List is empty!</div>;
+  }
+
+
   return (
-    <div className="main-view">
+    <div>
       {movies.map(movie => (
-        <div key={movie.id} className="movie-card">
-          <h2>{movie.Title}</h2>
-          <p>{movie.Description}</p>
-        </div>
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onMovieClick={(newSelectedMovie) => {
+            setSelectedMovies(newSelectedMovie);
+          }}
+        />
       ))}
     </div>
   );
