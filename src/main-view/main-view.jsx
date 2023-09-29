@@ -91,8 +91,8 @@ export const MainView = () => {
     <div className="main-view">
       {movies.map(movie => (
         <div key={movie.id} className="movie-card">
-          <h2>{movie.title}</h2>
-          <p>{movie.description}</p>
+          <h2>{movie.Title}</h2>
+          <p>{movie.Description}</p>
         </div>
       ))}
     </div>
