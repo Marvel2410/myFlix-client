@@ -16,6 +16,9 @@
   },
   "homepage": "https://github.com/Marvel2410/myFlix-client#readme",
   "dependencies": {
+    "app": "^0.1.0",
+    "create": "^0.0.2",
+    "g": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1"
