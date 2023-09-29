@@ -1,6 +1,14 @@
 import React from "react";
-export const MovieCard = ({ movie }) => (
-  <div>{movie.Title}</div>
-);
 
-import { MovieCard } from "../movie-card/movie-card";
+export const MovieCard = ({ movie, onMovieClick }) => {
+  return (
+    <div
+      onClick={() => {
+        onMovieClick(movie);
+      }}
+    >
+      {movie.title}
+    </div>
+  );
+};
+
