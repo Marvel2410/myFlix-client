@@ -1,3 +1,4 @@
+import React from "react";
 export const MovieCard = ({ movie }) => (
   <div>{movie.Title}</div>
 );
