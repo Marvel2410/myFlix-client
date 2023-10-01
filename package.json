@@ -29,7 +29,7 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.3",
     "process": "^0.11.10",
-    "@babel/plugin-proposal-private-property-in-object": "^1.0.6"
+    "@babel/plugin-proposal-private-property-in-object": "^1.4.0"
   },
   "browserslist": {
     "production": [
