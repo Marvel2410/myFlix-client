@@ -1,5 +1,16 @@
 .my-flix {
-  color: #4682b4;
+  color: #0ff;
+  background-color: #000;
+  font-size: 20px;
+}
+
+.button {
+  color: #000;
+  cursor: pointer;
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */
