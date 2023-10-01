@@ -4,6 +4,7 @@ import { MovieView } from '../movie-view/movie-view';
 import robinhoodImage from '../img/robinhood.jpg';
 import hookImage from '../img/hook.jpg';
 import beetlejuiceImage from '../img/beetlejuice.jpg';
+import "../index.scss";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([
@@ -47,7 +48,7 @@ export const MainView = () => {
 
 
   return (
-    <div>
+    <div className="my-flix">
       {movies.map((movie) => {
         return (
           <MovieCard

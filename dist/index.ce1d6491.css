@@ -1,4 +1,4 @@
-.my-flix {
+body {
   color: #0ff;
   background-color: #000;
   font-size: 20px;
@@ -7,10 +7,15 @@
 .button {
   color: #000;
   cursor: pointer;
-  background-color: #fff;
+  background-color: #8a2be2;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 2px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.movie-card, .movie-view {
+  color: #0ff;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */

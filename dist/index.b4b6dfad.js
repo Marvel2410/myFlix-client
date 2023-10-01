@@ -5693,6 +5693,7 @@ var _hookJpg = require("../img/hook.jpg");
 var _hookJpgDefault = parcelHelpers.interopDefault(_hookJpg);
 var _beetlejuiceJpg = require("../img/beetlejuice.jpg");
 var _beetlejuiceJpgDefault = parcelHelpers.interopDefault(_beetlejuiceJpg);
+var _indexScss = require("../index.scss");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
@@ -5728,30 +5729,31 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/main-view/main-view.jsx",
-        lineNumber: 41,
+        lineNumber: 42,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The List is empty!"
     }, void 0, false, {
         fileName: "src/main-view/main-view.jsx",
-        lineNumber: 45,
+        lineNumber: 46,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "my-flix",
         children: movies.map((movie)=>{
             return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                 movie: movie,
                 onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
             }, movie.id, false, {
                 fileName: "src/main-view/main-view.jsx",
-                lineNumber: 53,
+                lineNumber: 54,
                 columnNumber: 11
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/main-view/main-view.jsx",
-        lineNumber: 50,
+        lineNumber: 51,
         columnNumber: 5
     }, undefined);
 };
@@ -5765,7 +5767,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-view/movie-view":"5dzJV","@parcel/transformer-js/src/esmodule-helpers.js":"7ghYW","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4bzcd","../components/movie-card":"xGR5T","../img/hook.jpg":"24FBi","../img/beetlejuice.jpg":"dxDJd","../img/robinhood.jpg":"9wJ9h"}],"5dzJV":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-view/movie-view":"5dzJV","@parcel/transformer-js/src/esmodule-helpers.js":"7ghYW","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4bzcd","../components/movie-card":"xGR5T","../img/hook.jpg":"24FBi","../img/beetlejuice.jpg":"dxDJd","../img/robinhood.jpg":"9wJ9h","../index.scss":"lJZlQ"}],"5dzJV":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$40f8 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -5885,9 +5887,16 @@ const MovieView = ({ movie, onBackClick })=>{
                 lineNumber: 19,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                onClick: onBackClick,
-                children: "Back"
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "button",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    onClick: onBackClick,
+                    children: "Back"
+                }, void 0, false, {
+                    fileName: "src/movie-view/movie-view.jsx",
+                    lineNumber: 24,
+                    columnNumber: 9
+                }, undefined)
             }, void 0, false, {
                 fileName: "src/movie-view/movie-view.jsx",
                 lineNumber: 23,
@@ -6153,7 +6162,7 @@ module.exports = require("cd1ef03f65b316f8").getBundleURL("byUka") + "beetlejuic
 },{"cd1ef03f65b316f8":"164w2"}],"9wJ9h":[function(require,module,exports) {
 module.exports = require("cedae92c65217538").getBundleURL("byUka") + "robinhood.0b9372b1.jpg" + "?" + Date.now();
 
-},{"cedae92c65217538":"164w2"}],"lJZlQ":[function() {},{}],"lOjBx":[function(require,module,exports) {
+},{"cedae92c65217538":"164w2"}],"lJZlQ":[function() {},{}],"lJZlQ":[function() {},{}],"lOjBx":[function(require,module,exports) {
 "use strict";
 var m = require("aaccff5d309d9239");
 var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
