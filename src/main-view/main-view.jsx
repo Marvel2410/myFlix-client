@@ -1,7 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import { MovieCard } from "../components/movie-card";
-import { MovieView } from "../movie-view/movie-view";
+import React, { useState } from 'react';
+import { MovieCard } from '../components/movie-card';
+import { MovieView } from '../movie-view/movie-view';
 
 export const MainView = () => {
   const [movies, setMovies] = useState([
