@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Marvel2410/myFlix-client/static/css/main.17ba1e00.css",
+    "main.js": "/Marvel2410/myFlix-client/static/js/main.ca3bba6e.js",
+    "index.html": "/Marvel2410/myFlix-client/index.html",
+    "main.17ba1e00.css.map": "/Marvel2410/myFlix-client/static/css/main.17ba1e00.css.map",
+    "main.ca3bba6e.js.map": "/Marvel2410/myFlix-client/static/js/main.ca3bba6e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17ba1e00.css",
+    "static/js/main.ca3bba6e.js"
+  ]
+}
