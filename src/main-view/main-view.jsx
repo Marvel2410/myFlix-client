@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { MovieCard } from '../components/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import robinhoodImage from '../img/hook.jpg';
+import robinhoodImage from '../img/robinhood.jpg';
 import hookImage from '../img/hook.jpg';
 import beetlejuiceImage from '../img/beetlejuice.jpg';
 
