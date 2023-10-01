@@ -27392,9 +27392,9 @@ const MainView = ()=>{
         }
     ]);
     const [selectedMovies, setSelectedMovies] = (0, _react.useState)(null);
-    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-        movie: selectedMovie,
-        onBackClick: ()=>setSelectedMovie(null)
+    if (selectedMovies) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+        movie: selectedMovies,
+        onBackClick: ()=>setSelectedMovies(null)
     }, void 0, false, {
         fileName: "src/main-view/main-view.jsx",
         lineNumber: 95,
