@@ -3,6 +3,7 @@ import { MovieCard } from '../components/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
 export const MainView = () => {
+  console.log('MainView rendered');
   const [movies, setMovies] = useState([
     {
       id: 1,
