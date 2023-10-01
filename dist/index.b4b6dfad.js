@@ -5687,6 +5687,10 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _movieCard = require("../components/movie-card");
 var _movieView = require("../movie-view/movie-view");
+var _hookJpg = require("../img/hook.jpg");
+var _hookJpgDefault = parcelHelpers.interopDefault(_hookJpg);
+var _beetlejuiceJpg = require("../img/beetlejuice.jpg");
+var _beetlejuiceJpgDefault = parcelHelpers.interopDefault(_beetlejuiceJpg);
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
@@ -5695,7 +5699,7 @@ const MainView = ()=>{
             id: 1,
             title: "Robin Hood: Prince of Thieves",
             description: "Robin Hood decides to fight back as an outlaw when faced with the tyranny of the Sheriff of Nottingham and also to win back the love of the beautiful Maid Marian.",
-            image: "../img/robinhood.jpg",
+            image: (0, _hookJpgDefault.default),
             genre: "Action",
             director: "Kevin Reynolds"
         },
@@ -5703,7 +5707,7 @@ const MainView = ()=>{
             id: 2,
             title: "Hook",
             description: "When Captain James Hook kidnaps his children, an adult Peter Pan must return to Neverland and reclaim his youthful spirit in order to challenge his old enemy.",
-            image: "../img/hook.jpg",
+            image: (0, _hookJpgDefault.default),
             genre: "Adventure",
             director: "Steven Spielberg"
         },
@@ -5711,7 +5715,7 @@ const MainView = ()=>{
             id: 3,
             title: "Beetlejuice",
             description: "The spirits of a deceased couple are harassed by an unbearable family that has moved into their home, and hire a malicious spirit to drive them out.",
-            image: "../img/beetlejuice.jpg",
+            image: (0, _beetlejuiceJpgDefault.default),
             genre: "Comedy",
             director: "Tim Burton"
         }
@@ -5722,14 +5726,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/main-view/main-view.jsx",
-        lineNumber: 38,
+        lineNumber: 41,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The List is empty!"
     }, void 0, false, {
         fileName: "src/main-view/main-view.jsx",
-        lineNumber: 42,
+        lineNumber: 45,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -5739,17 +5743,17 @@ const MainView = ()=>{
                 onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
             }, movie.id, false, {
                 fileName: "src/main-view/main-view.jsx",
-                lineNumber: 50,
+                lineNumber: 53,
                 columnNumber: 11
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/main-view/main-view.jsx",
-        lineNumber: 47,
+        lineNumber: 50,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "/18lnyyLlq4OMFmTEuDqPyD4qZE=");
+_s(MainView, "E96KHQGd5S5V6oqAW1G9RFinwi0=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -5759,7 +5763,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-view/movie-view":"5dzJV","@parcel/transformer-js/src/esmodule-helpers.js":"7ghYW","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4bzcd","../components/movie-card":"xGR5T"}],"5dzJV":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-view/movie-view":"5dzJV","@parcel/transformer-js/src/esmodule-helpers.js":"7ghYW","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4bzcd","../components/movie-card":"xGR5T","../img/hook.jpg":"24FBi","../img/beetlejuice.jpg":"dxDJd"}],"5dzJV":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$40f8 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -6099,7 +6103,48 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"7ghYW","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4bzcd"}],"lJZlQ":[function() {},{}],"lOjBx":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"7ghYW","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4bzcd"}],"24FBi":[function(require,module,exports) {
+module.exports = require("2ffa76333431d149").getBundleURL("byUka") + "hook.c6afbb7e.jpg" + "?" + Date.now();
+
+},{"2ffa76333431d149":"164w2"}],"164w2":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+}
+// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"dxDJd":[function(require,module,exports) {
+module.exports = require("cd1ef03f65b316f8").getBundleURL("byUka") + "beetlejuice.d3829809.jpg" + "?" + Date.now();
+
+},{"cd1ef03f65b316f8":"164w2"}],"lJZlQ":[function() {},{}],"lOjBx":[function(require,module,exports) {
 "use strict";
 var m = require("aaccff5d309d9239");
 var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;

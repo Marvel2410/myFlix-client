@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { MovieCard } from '../components/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import robinhoodImage from '../img/hook.jpg';
+import hookImage from '../img/hook.jpg';
+import beetlejuiceImage from '../img/beetlejuice.jpg';
 
 export const MainView = () => {
   const [movies, setMovies] = useState([
@@ -8,7 +11,7 @@ export const MainView = () => {
       id: 1,
       title: 'Robin Hood: Prince of Thieves',
       description: 'Robin Hood decides to fight back as an outlaw when faced with the tyranny of the Sheriff of Nottingham and also to win back the love of the beautiful Maid Marian.',
-      image: '../img/robinhood.jpg',
+      image: robinhoodImage,
       genre: 'Action',
       director: 'Kevin Reynolds',
     },
@@ -16,7 +19,7 @@ export const MainView = () => {
       id: 2,
       title: 'Hook',
       description: 'When Captain James Hook kidnaps his children, an adult Peter Pan must return to Neverland and reclaim his youthful spirit in order to challenge his old enemy.',
-      image: '../img/hook.jpg',
+      image: hookImage,
       genre: 'Adventure',
       director: 'Steven Spielberg',
     },
@@ -24,7 +27,7 @@ export const MainView = () => {
       id: 3,
       title: 'Beetlejuice',
       description: 'The spirits of a deceased couple are harassed by an unbearable family that has moved into their home, and hire a malicious spirit to drive them out.',
-      image: '../img/beetlejuice.jpg',
+      image: beetlejuiceImage,
       genre: 'Comedy',
       director: 'Tim Burton',
     },
