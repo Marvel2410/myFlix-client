@@ -88,11 +88,11 @@ export const MainView = () => {
   ])
 
 
-  const [selectedMovies, setSelectedMovies] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
-  if (selectedMovies) {
+  if (selectedMovie) {
     return (
-      <MovieView movie={selectedMovies} onBackClick={() => setSelectedMovies(null)} />
+      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
     );
   }
   if (movies.length === 0) {
@@ -102,15 +102,17 @@ export const MainView = () => {
 
   return (
     <div>
-      {movies.map(movie => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovies(newSelectedMovie);
-          }}
-        />
-      ))}
+      {movies.map((movie) => {
+        return (
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            onMovieClick={(newSelectedMovie) =>
+              setSelectedMovie(newSelectedMovie)
+            }
+          />
+        );
+      })}
     </div>
   );
 };
