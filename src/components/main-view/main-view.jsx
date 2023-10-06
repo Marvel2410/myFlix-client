@@ -5,6 +5,11 @@ import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 import PropTypes from 'prop-types';
 import "../../index.scss";
+//import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import './main-view.scss';
+
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -50,26 +55,36 @@ export const MainView = () => {
 
 
   return (
-    <div className="my-flix">
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) =>
-            setSelectedMovie(newSelectedMovie)
-          }
-        />
-      ))}
-      <button onClick={() => {
+    <div className="main-view">
+      <Row>
+        {movies.map((movie) => (
+          <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) =>
+                setSelectedMovie(newSelectedMovie)
+              }
+            />
+          </Col>
+        ))}
+
+      </Row>
+      <button className="logoutbutton" onClick={() => {
         setUser(null); setToken(null); localStorage.clear();
       }}
       >
         Logout
+
       </button>
+
     </div>
   );
 };
 
+
 MainView.propTypes = {
   movies: PropTypes.array.isRequired,
 };
+
+export default MainView;

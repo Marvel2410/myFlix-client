@@ -1,21 +1,13 @@
+@import '~bootstrap/scss/bootstrap';
+
 body {
   background-color: black;
   color: cyan;
   font-size: 20px;
 }
 
-.button {
-  display: inline-block;
-  background-color: blueviolet;
-  color: black;
-  padding: 10px 10px;
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
-}
-
 .movie-card {
-  color: cyan;
+  color: black;
 }
 
 .movie-view {
