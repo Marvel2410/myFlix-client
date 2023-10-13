@@ -13230,13 +13230,6 @@ body {
   padding: 4px 12px;
 }
 
-.container {
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  display: flex;
-}
-
 .movie-card {
   box-shadow: 0 4px 8px #85ecea1a;
 }

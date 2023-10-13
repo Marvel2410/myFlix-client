@@ -6,7 +6,7 @@ import './movie-card.scss'
 
 export const MovieCard = ({ movie }) => {
   return (
-    <Card className="h-100 movie-card">
+    <Card key={movie.id} className="h-100 movie-card">
       <Card.Img
         variant="top"
         src={movie.image}
@@ -23,3 +23,4 @@ MovieCard.propTypes = {
   movie: PropTypes.object.isRequired,
 };
 
+export default MovieCard;

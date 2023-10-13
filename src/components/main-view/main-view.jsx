@@ -3,19 +3,29 @@ import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movie-view';
 import LoginView from '../login-view/login-view';
 import NavigationBar from '../navigation-bar/navigation-bar';
-//import { SignupView } from '../signup-view/signup-view';
+import ProfileView from '../profile-view/profile-view';
+import SignupView from '../signup-view/signup-view';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'; // Updated import statements
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+//import Col from 'react-bootstrap/Col';
+//import { Button, Container, Nav } from 'react-bootstrap';
 
 import './main-view.scss';
 import "../../index.scss";
 
-const MainView = ({ onLoggedOut }) => {
-  const [user, setUser] = useState(null);
-  //const [movies, setMovies] = useState([]);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [movies, setMovies] = useState([]);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
+
+
+
+  const [search, setSearch] = useState("");
+  // const [filteredMovies, setFilteredMovies] = useState({});
 
   useEffect(() => {
     if (!token) return;
@@ -35,10 +45,10 @@ const MainView = ({ onLoggedOut }) => {
           image: movie.ImagePath
         }));
         setMovies(moviesFromApi);
-        console.log("Movies set:", moviesFromApi);
       })
       .catch(error => console.error('Error fetching movies:', error));
   }, [token]);
+
 
   if (!user) {
     return <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />;
@@ -52,23 +62,54 @@ const MainView = ({ onLoggedOut }) => {
   return (
     <Router>
       <div className="main-view">
-        <NavigationBar user={user} onLoggedOut={onLoggedOut} />
-        <Switch>
-          <Route exact path="/" render={() => (
-            <Row>
-              {movies.map((movie) => (
-                <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
-                  <Link to={`/movies/${movie.id}`}>
-                    <MovieCard movie={movie} />
-                  </Link>
-                </Col>
-              ))}
-            </Row>
-          )} />
-          <Route path="/movies/:movieId" render={({ match }) => (
-            <MovieView movie={movies.find(m => m.id === match.params.movieId)} />
-          )} />
-        </Switch>
+        <NavigationBar
+          user={user} movies={movies} search={search} onLoggedOut={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+        />
+
+        <Row className="margin-top-custom justify-content-center mb-5">
+          <Routes>
+            <Route path="/login" element={
+              <LoginView
+                onLoggedIn={(user, token) => {
+                  setUser(user);
+                  setToken(token);
+                }}
+              />
+            } />
+            <Route path="/signup" element={<SignupView />} />
+            <Route
+              path="/"
+              element={
+                user ? (
+                  <Outlet />
+                ) : (
+                  <LoginView
+                    onLoggedIn={(user, token) => {
+                      setUser(user);
+                      setToken(token);
+                    }}
+                  />
+                )
+              }
+            />
+            <Route
+              path="/movies"
+              element={<MovieCard movie={movies} token={token} setUser={setUser} user={user} />}
+            />
+            <Route
+              path="/movies/:movieId"
+              element={<MovieView movie={movies} />}
+            />
+            <Route
+              path="/profile"
+              element={<ProfileView user={user} token={token} movie={movies} setUser={setUser} />}
+            />
+          </Routes>
+        </Row>
       </div>
     </Router>
   );

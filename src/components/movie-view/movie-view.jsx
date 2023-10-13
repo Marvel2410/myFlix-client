@@ -37,3 +37,4 @@ MovieView.propTypes = {
   movie: PropTypes.object.isRequired
 };
 
+export default MovieView;

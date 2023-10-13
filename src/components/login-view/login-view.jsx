@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import './login-view.scss';
+import { Container, Col, Row, Form } from 'react-bootstrap';
+
 
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUserName] = useState("");
@@ -17,7 +18,6 @@ const LoginView = ({ onLoggedIn }) => {
     };
 
     fetch("https://movies-myflix-85528af4e39c.herokuapp.com/login", {
-      //currently do not have enpoint for login
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,38 +43,51 @@ const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <div className="container">
-      <Card style={{ width: '18rem' }}>
-        <Card.Body>
-          <Card.Title>Login</Card.Title>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formUsername">
-              <Form.Label>Username:</Form.Label>
-              <Form.Control
-                type="text"
-                value={username}
-                onChange={(e) => setUserName(e.target.value)}
-                required
-                minLength="3"
-              />
-            </Form.Group>
+    <Container className="margin-top-custom">
+      <Row className="justify-content-md-center">
+        <Col md={5}>
+          <Card style={{ width: '18rem' }}>
+            <Card.Body>
+              <Card.Title>Login</Card.Title>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                  <Form.Label>username:
+                    <Form.Control
+                      type="text"
+                      value={username}
+                      onChange={(e) => {
+                        setUserName(e.target.value);
+                      }}
+                      required
+                      placeholder="enter username"
+                    />
+                  </Form.Label>
+                </Form.Group>
 
-            <Form.Group controlId="formPassword">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-    </div>
+                <Form.Group>
+                  <Form.Label>password:
+                    <Form.Control
+                      type="password"
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
+                      required
+                      placeholder="enter password"
+                    />
+                  </Form.Label>
+                </Form.Group>
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                  Submit
+                </Button>
+              </Form> {" "}
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
+
+export default LoginView;
 
