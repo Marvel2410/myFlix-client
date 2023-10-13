@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Link } from 'react-router-dom';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 import PropTypes from 'prop-types';
 import "../../index.scss";
+//import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './main-view.scss';
 
-
-
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
 
@@ -40,56 +38,47 @@ export const MainView = () => {
       .catch(error => console.error('Error fetching movies:', error));
   }, [token]);
 
+  if (!user) {
+    return <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />;
+  }
+
+  if (selectedMovie) {
+    return (
+      <MovieView
+        movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+    );
+  }
+  if (movies.length === 0) {
+    return <div>The List is empty!</div>;
+  }
+
   return (
-    <BrowserRouter>
-      <div className="main-view">
-        <Row>
-          {movies.map((movie) => (
-            <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
-              <MovieCard
-                key={movie.id}
-                movie={movie}
-              />
-            </Col>
-          ))}
-        </Row>
+    <div className="main-view">
+      <Row>
+        {movies.map((movie) => (
+          <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) =>
+                setSelectedMovie(newSelectedMovie)
+              }
+            />
+          </Col>
+        ))}
 
-        <Routes>
-          <Route
-            path="/movies/:movieId"
-            element={<MovieView />}
-          />
-          <Route
-            path="/login"
-            element={
-              !user ? (
-                <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />
-              ) : null
-            }
-          />
-          <Route
-            path="/signup"
-            element={<SignupView />}
-          />
-        </Routes>
+      </Row>
+      <button className="logoutbutton" onClick={() => {
+        setUser(null); setToken(null); localStorage.clear();
+      }}
+      >
+        Logout
 
+      </button>
 
-        {user && (
-          //<Link to="/login">Login</Link>
-          //) : (
-          <button className="logoutbutton" onClick={() => {
-            setUser(null); setToken(null); localStorage.clear();
-          }}
-          >
-            Logout
-          </button>
-        )}
-      </div>
-    </BrowserRouter>
-
+    </div>
   );
 };
-
 
 MainView.propTypes = {
   movies: PropTypes.array.isRequired,
