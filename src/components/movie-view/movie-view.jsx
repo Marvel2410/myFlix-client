@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './movie-view.scss';
 
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movie }) => {
   return (
     <div>
       <div>
@@ -26,20 +27,13 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>{movie.genre}</span>
       </div>
       <div className="button">
-        <button
-          onClick={onBackClick}
-          className="back-button"
-          style={{ cursor: "pointer" }}
-        >
-          Back
-        </button>
+        <Link to="/"> Back </Link>
       </div>
     </div>
   );
 };
 
 MovieView.propTypes = {
-  movie: PropTypes.object.isRequired,
-  onBackClick: PropTypes.func.isRequired
+  movie: PropTypes.object.isRequired
 };
 

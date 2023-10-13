@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { MovieCard } from '../movie-card/movie-card';
-import { MovieView } from '../movie-view/movie-view';
-import { LoginView } from '../login-view/login-view';
-import { SignupView } from '../signup-view/signup-view';
+import MovieCard from '../movie-card/movie-card';
+import MovieView from '../movie-view/movie-view';
+import LoginView from '../login-view/login-view';
+import NavigationBar from '../navigation-bar/navigation-bar';
+//import { SignupView } from '../signup-view/signup-view';
 import PropTypes from 'prop-types';
-import "../../index.scss";
-//import Container from 'react-bootstrap/Container';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './main-view.scss';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
-export const MainView = () => {
-  const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+import './main-view.scss';
+import "../../index.scss";
+
+const MainView = ({ onLoggedOut }) => {
   const [user, setUser] = useState(null);
+  //const [movies, setMovies] = useState([]);
   const [token, setToken] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
@@ -35,6 +35,7 @@ export const MainView = () => {
           image: movie.ImagePath
         }));
         setMovies(moviesFromApi);
+        console.log("Movies set:", moviesFromApi);
       })
       .catch(error => console.error('Error fetching movies:', error));
   }, [token]);
@@ -43,46 +44,38 @@ export const MainView = () => {
     return <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />;
   }
 
-  if (selectedMovie) {
-    return (
-      <MovieView
-        movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-    );
-  }
-  if (movies.length === 0) {
+
+  if (!movies || movies.length === 0) {
     return <div>The List is empty!</div>;
   }
 
   return (
-    <div className="main-view">
-      <Row>
-        {movies.map((movie) => (
-          <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              onMovieClick={(newSelectedMovie) =>
-                setSelectedMovie(newSelectedMovie)
-              }
-            />
-          </Col>
-        ))}
-
-      </Row>
-      <button className="logoutbutton" onClick={() => {
-        setUser(null); setToken(null); localStorage.clear();
-      }}
-      >
-        Logout
-
-      </button>
-
-    </div>
+    <Router>
+      <div className="main-view">
+        <NavigationBar user={user} onLoggedOut={onLoggedOut} />
+        <Switch>
+          <Route exact path="/" render={() => (
+            <Row>
+              {movies.map((movie) => (
+                <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
+                  <Link to={`/movies/${movie.id}`}>
+                    <MovieCard movie={movie} />
+                  </Link>
+                </Col>
+              ))}
+            </Row>
+          )} />
+          <Route path="/movies/:movieId" render={({ match }) => (
+            <MovieView movie={movies.find(m => m.id === match.params.movieId)} />
+          )} />
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
 MainView.propTypes = {
-  movies: PropTypes.array.isRequired,
+  onLoggedOut: PropTypes.func
 };
 
 export default MainView;

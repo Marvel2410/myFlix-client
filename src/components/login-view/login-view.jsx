@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './login-view.scss';
 
-export const LoginView = ({ onLoggedIn }) => {
+const LoginView = ({ onLoggedIn }) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,10 +24,14 @@ export const LoginView = ({ onLoggedIn }) => {
       },
       body: JSON.stringify(data)
     })
-      .then((response) => response.json())
-      .then((data) => {
+      .then((response) => {
+        return response.json();
+      })
+      .then(async (data) => {
         console.log("Login response:", data);
         if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
           onLoggedIn(data.user, data.token);
         } else {
           alert("User does not exist");
