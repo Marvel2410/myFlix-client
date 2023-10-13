@@ -9,6 +9,7 @@ import "../../index.scss";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './main-view.scss';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
