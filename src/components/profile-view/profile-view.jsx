@@ -77,8 +77,5 @@ const ProfileView = ({ user }) => {
   );
 };
 
-// ProfileView.propTypes = {
-//   user: PropTypes.object.isRequired,
-// };
 
 export default ProfileView;
