@@ -9,11 +9,11 @@ import { Container, Col, Row } from 'react-bootstrap';
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //onLoggedIn(username, 'token');
+    onLoggedIn(username, 'token');
 
     const data = {
       Username: username,
