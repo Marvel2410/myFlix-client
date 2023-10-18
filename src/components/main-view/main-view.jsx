@@ -6,7 +6,7 @@ import NavigationBar from '../navigation-bar/navigation-bar';
 import ProfileView from '../profile-view/profile-view';
 import SignupView from '../signup-view/signup-view';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom'; // Updated import statements
+import { BrowserRouter as Router, Routes, Route, Outlet, Navigate, useNavigate } from 'react-router-dom'; // Updated import statements
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Button, Container, Nav } from 'react-bootstrap';
@@ -149,7 +149,6 @@ const MainView = () => {
                 <ProfileView
                   user={user}
                   movies={movies}
-                  setUser={setUser}
                   onFavoriteClick={handleFavoriteClick}
                   onDeregister={handleDeregister}
                 />
