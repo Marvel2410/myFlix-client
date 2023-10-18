@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { Container, Col, Row, Form } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 
 
 const LoginView = ({ onLoggedIn }) => {
-  const [username, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
@@ -25,10 +25,10 @@ const LoginView = ({ onLoggedIn }) => {
       body: JSON.stringify(data)
     })
       .then((response) => {
+        //console.log("Login response:", response.json);
         return response.json();
       })
       .then(async (data) => {
-        console.log("Login response:", data);
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
@@ -48,15 +48,16 @@ const LoginView = ({ onLoggedIn }) => {
         <Col md={5}>
           <Card style={{ width: '18rem' }}>
             <Card.Body>
-              <Card.Title>Login</Card.Title>
+              <Card.Title>Already have an account? Login</Card.Title>
               <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                  <Form.Label>username:
+                  <Form.Label>
+                    username:
                     <Form.Control
                       type="text"
                       value={username}
                       onChange={(e) => {
-                        setUserName(e.target.value);
+                        setUsername(e.target.value);
                       }}
                       required
                       placeholder="enter username"
@@ -65,7 +66,8 @@ const LoginView = ({ onLoggedIn }) => {
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>password:
+                  <Form.Label>
+                    password:
                     <Form.Control
                       type="password"
                       value={password}
@@ -73,19 +75,19 @@ const LoginView = ({ onLoggedIn }) => {
                         setPassword(e.target.value);
                       }}
                       required
-                      placeholder="enter password"
+                      placeholder="enter your password"
                     />
                   </Form.Label>
                 </Form.Group>
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                <Button variant="primary" type="submit" onClick={handleSubmit} >
                   Submit
                 </Button>
-              </Form> {" "}
+              </Form> {""}
             </Card.Body>
           </Card>
         </Col>
-      </Row>
-    </Container>
+      </Row >
+    </Container >
   );
 };
 
