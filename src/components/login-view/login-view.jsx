@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { Container, Col, Row, Form } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 
 
 const LoginView = ({ onLoggedIn }) => {
