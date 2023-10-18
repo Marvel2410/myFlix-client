@@ -8,6 +8,7 @@ const SignupView = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
   };
 
   return (

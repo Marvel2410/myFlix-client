@@ -6,8 +6,11 @@ import NavigationBar from '../navigation-bar/navigation-bar';
 import ProfileView from '../profile-view/profile-view';
 import SignupView from '../signup-view/signup-view';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Row, Col, Button } from 'react-bootstrap';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'; // Updated import statements
+// import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Button, Container, Nav, Row } from 'react-bootstrap';
+
 import './main-view.scss';
 import "../../index.scss";
 
@@ -16,15 +19,16 @@ const MainView = () => {
   const storedToken = localStorage.getItem("token");
 
   const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
+
+
+
   const [search, setSearch] = useState("");
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  // const [filteredMovies, setFilteredMovies] = useState({});
 
   useEffect(() => {
-    if (!token) {
-      return;
-    }
+    if (!token) return;
 
     fetch("https://movies-myflix-85528af4e39c.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
@@ -32,45 +36,56 @@ const MainView = () => {
       .then(response => response.json())
       .then(data => {
         console.log("Movies from API:", data);
-        setMovies(data);
+        const moviesFromApi = data.map(movie => ({
+          id: movie.id,
+          title: movie.Title,
+          description: movie.Description,
+          genre: movie.Genre,
+          director: movie.Director,
+          image: movie.ImagePath
+        }));
+        setMovies(moviesFromApi);
       })
-      .catch((error) => {
-        console.error("fetch error:", error);
-      });
+      .catch(error => console.error('Error fetching movies:', error));
   }, [token]);
 
-  const moviesFromApi = (arr, query) => {
-    return arr.filter((movie) => {
-      return movie.title
-    });
-  };
-  console.log(moviesFromApi(movies, search));
 
-  useEffect(() => {
-    setFilteredMovies(moviesFromApi(movies, search));
-  }, [search, movies]);
+  if (!user) {
+    return <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />;
+  }
 
 
+  if (!movies || movies.length === 0) {
+    return <div>The List is empty!</div>;
+  }
 
   return (
-    <>
-      <NavigationBar
-        user={user} movies={movies} search={search}
-        onLoggedOut={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      />
+    <Router>
+      <div className="main-view">
+        <NavigationBar
+          user={user} movies={movies} search={search} onLoggedOut={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+        />
 
-      <Row className="margin-top-custom justify-content-center mb-5">
-        <BrowserRouter>
+        <Row className="margin-top-custom justify-content-center mb-5">
           <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/login" element={
-              <>
-                {user ? (
-                  <Navigate to="/movies" />
+              <LoginView
+                onLoggedIn={(user, token) => {
+                  setUser(user);
+                  setToken(token);
+                }}
+              />
+            } />
+            <Route path="/signup" element={<SignupView />} />
+            {/* <Route
+              path="/"
+              element={
+                user ? (
+                  <Outlet />
                 ) : (
                   <LoginView
                     onLoggedIn={(user, token) => {
@@ -78,46 +93,49 @@ const MainView = () => {
                       setToken(token);
                     }}
                   />
-                )}
-              </>
-            }
-            />
-
-            <Route path="/signup" element={<>{user ? <Navigate to="/movies" /> : <SignupView />}</>}
-            />
-            <Route
+                )
+              }
+            /> */}
+            {/* <Route
               path="/movies"
+              element={<MovieCard movie={movies} token={token} setUser={setUser} user={user} />}
+            /> */}
+            <Route
+              path="/"
               element={
                 <>
-                  {filteredMovies.map((movies) => {
-                    return (
-                      <MovieCard
-                        movie={movie}
-                        token={token}
-                        setUser={setUser}
-                        user={user}
-                      />
-                    );
-                  })}
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    <>
+                      {movies.map((movie) => (
+                        <Col xs={12} s={8} md={4} className="mb-5" key={movie._id}>
+                          <MovieCard
+                            movie={movie} user={user} />
+                        </Col>
+                      ))}
+                    </>
+                  )}
                 </>
               }
             />
+
             <Route
               path="/movies/:movieId"
-              element={<MovieView movies={movies} />}
+              element={<MovieView movie={movies} />}
             />
             <Route
               path="/profile"
-              element={user ? (
-                <ProfileView user={user} token={token} movies={movies} setUser={setUser} />
-              ) : (
-                <Navigate to="/login" />
-              )}
+              element={<ProfileView user={user} token={token} movie={movies} setUser={setUser} />}
             />
+
+
           </Routes>
-        </BrowserRouter>
-      </Row>
-    </>
+        </Row>
+      </div>
+    </Router>
   );
 };
 

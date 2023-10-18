@@ -19,8 +19,8 @@ const MovieCard = ({ movie }) => {
   );
 };
 
-MovieCard.propTypes = {
-  movie: PropTypes.object.isRequired,
-};
+// MovieCard.propTypes = {
+//   movie: PropTypes.object.isRequired,
+// };
 
 export default MovieCard;
