@@ -81,25 +81,7 @@ const MainView = () => {
               />
             } />
             <Route path="/signup" element={<SignupView />} />
-            {/* <Route
-              path="/"
-              element={
-                user ? (
-                  <Outlet />
-                ) : (
-                  <LoginView
-                    onLoggedIn={(user, token) => {
-                      setUser(user);
-                      setToken(token);
-                    }}
-                  />
-                )
-              }
-            /> */}
-            {/* <Route
-              path="/movies"
-              element={<MovieCard movie={movies} token={token} setUser={setUser} user={user} />}
-            /> */}
+
             <Route
               path="/"
               element={
@@ -128,10 +110,8 @@ const MainView = () => {
             />
             <Route
               path="/profile"
-              element={<ProfileView user={user} token={token} movie={movies} setUser={setUser} />}
+              element={<ProfileView />}
             />
-
-
           </Routes>
         </Row>
       </div>
