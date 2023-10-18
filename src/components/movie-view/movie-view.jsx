@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import './movie-view.scss';
 
 
-const MovieView = ({ movie, user, handleFavoriteClick }) => {
-
-
+const MovieView = ({ movie }) => {
   return (
     <div>
       <div>
@@ -29,21 +27,14 @@ const MovieView = ({ movie, user, handleFavoriteClick }) => {
         <span>{movie.genre}</span>
       </div>
       <div className="button">
-        <Link to="/" className="btn btn-primary"> Back </Link>
-        {user && (
-          <button className="btn btn-primary" onClick={() => handleFavoriteClick(movie)}>
-            Favorite
-          </button>
-        )}
+        <Link to="/"> Back </Link>
       </div>
     </div>
   );
 };
 
-MovieView.propTypes = {
-  movie: PropTypes.object.isRequired,
-  user: PropTypes.object,
-  handleFavoriteClick: PropTypes.func.isRequired
-};
+// MovieView.propTypes = {
+//   movie: PropTypes.object.isRequired
+// };
 
 export default MovieView;

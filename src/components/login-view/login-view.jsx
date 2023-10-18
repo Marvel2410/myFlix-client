@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form'
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Form } from 'react-bootstrap';
 
 
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onLoggedIn(username, 'token');
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     const data = {
       Username: username,
@@ -54,7 +51,7 @@ const LoginView = ({ onLoggedIn }) => {
               <Card.Title>Login</Card.Title>
               <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                  <Form.Label>Username:
+                  <Form.Label>username:
                     <Form.Control
                       type="text"
                       value={username}

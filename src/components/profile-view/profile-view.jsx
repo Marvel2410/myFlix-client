@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
-const ProfileView = ({ user, movies, onFavoriteClick, onDeregister }) => {
+const ProfileView = ({ user }) => {
   const [newUsername, setNewUsername] = useState(user.Username);
   const [newPassword, setNewPassword] = useState("");
   const [newEmail, setNewEmail] = useState(user.Email);
@@ -18,7 +18,6 @@ const ProfileView = ({ user, movies, onFavoriteClick, onDeregister }) => {
   const handleDeregister = () => {
     // Implement the logic to deregister user here.
   };
-
 
   return (
     <div className="container">
@@ -64,7 +63,6 @@ const ProfileView = ({ user, movies, onFavoriteClick, onDeregister }) => {
               />
             </Form.Group>
 
-
             <Button variant="primary" onClick={handleUpdate}>
               Update
             </Button>
@@ -79,20 +77,8 @@ const ProfileView = ({ user, movies, onFavoriteClick, onDeregister }) => {
   );
 };
 
-ProfileView.propTypes = {
-  user: PropTypes.object.isRequired,
-  movies: PropTypes.array.isRequired,
-  onFavoriteClick: PropTypes.func.isRequired,
-  onDeregister: PropTypes.func.isRequired,
-};
+// ProfileView.propTypes = {
+//   user: PropTypes.object.isRequired,
+// };
 
 export default ProfileView;
-
-/*{movies.map((movie) => (
-  <div key={movie.id}>
-    <span>{movie.title}</span>
-    <Button className="btn btn-primary" onClick={() => onFavoriteClick(movie)}>
-      Favorite
-    </Button>
-  </div>
-))}*/
