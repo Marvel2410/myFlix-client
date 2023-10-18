@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { Container, Col, Row, Form } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form'
+import { Container, Col, Row } from 'react-bootstrap';
 
 
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLoggedIn(username, 'token');
+    //onLoggedIn(username, 'token');
 
     const data = {
       Username: username,

@@ -6,6 +6,7 @@ import './movie-view.scss';
 
 const MovieView = ({ movie, user, handleFavoriteClick }) => {
 
+
   return (
     <div>
       <div>

@@ -4,7 +4,8 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import './movie-card.scss'
 
-const MovieCard = ({ movie, user, onFavoriteClick }) => {
+const MovieCard = ({ movie, setUser, user, onFavoriteClick }) => {
+
   return (
     <Card key={movie.id} className="h-100 movie-card">
       <Card.Img
