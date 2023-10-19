@@ -27541,86 +27541,55 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _movieCardScss = require("./movie-card.scss");
-const MovieCard = ({ movie: movie1, handleFavoriteMovieCard, favoriteMovies, username, token })=>{
-    const handleFavorite1 = (movie1)=>{
-        if (favoriteMovies.includes(movie1._id)) {
-            // If the movie is already in favorites, remove it
-            const updatedFavorites = favoriteMovies.filter((id)=>id !== movie1._id);
-            setFavoriteMovies(updatedFavorites);
-        } else {
-            // If the movie is not in favorites, add it
-            const updatedFavorites = [
-                ...favoriteMovies,
-                movie1._id
-            ];
-            setFavoriteMovies(updatedFavorites);
-        }
-        fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${movie1.title}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                FavoriteMovies: favoriteMovies
-            })
-        }).then((response)=>response.json()).then((data)=>{
-            console.log("Updated favorites on server:", data);
-        }).catch((error)=>console.error("Error updating favorites:", error));
-    };
+const MovieCard = ({ movie })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
+        className: "h-100 movie-card",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
+                variant: "top",
+                src: movie.image
+            }, void 0, false, {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 10,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                        children: movie.title
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 15,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                        to: `/movies/${movie.id}`,
+                        children: "Open"
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 16,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/movie-card/movie-card.jsx",
+                lineNumber: 14,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, movie.id, true, {
+        fileName: "src/components/movie-card/movie-card.jsx",
+        lineNumber: 9,
+        columnNumber: 5
+    }, undefined);
 };
 _c = MovieCard;
+// MovieCard.propTypes = {
+//   movie: PropTypes.object.isRequired,
+// };
 exports.default = MovieCard;
 var _c;
-return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-    className: "h-100 movie-card",
-    children: [
-        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
-            variant: "top",
-            src: movie.image
-        }, void 0, false, {
-            fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 38,
-            columnNumber: 5
-        }, undefined),
-        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                    children: movie.title
-                }, void 0, false, {
-                    fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 43,
-                    columnNumber: 7
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                    variant: "primary",
-                    onClick: ()=>handleFavorite(movie),
-                    children: "Favorite"
-                }, void 0, false, {
-                    fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 44,
-                    columnNumber: 7
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                    to: `/movies/${movie.id}`,
-                    children: "Open"
-                }, void 0, false, {
-                    fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 45,
-                    columnNumber: 7
-                }, undefined)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 42,
-            columnNumber: 5
-        }, undefined)
-    ]
-}, movie.id, true, {
-    fileName: "src/components/movie-card/movie-card.jsx",
-    lineNumber: 37,
-    columnNumber: 3
-}, undefined);
+$RefreshReg$(_c, "MovieCard");
 
   $parcel$ReactRefreshHelpers$67b2.postlude(module);
 } finally {
