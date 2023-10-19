@@ -16,9 +16,11 @@ const MovieView = ({ movies }) => {
   //Update::Log the movie. Console log's are my best friend when coding. The more data I can see the better. Here I want to confirm we have everything we need to display in the retrun code below. 
   console.log('movie ', movie)
   return (
-    <div>
-      <div>
-        <img className="w-100" src={movie.image} alt={movie.title} />
+    <div className="container text-center">
+      <div className="row">
+        <div className="col-md-6 mx-auto">
+          <img className="img-fluid" src={movie.image} alt={movie.title} />
+        </div>
       </div>
       <div>
         <span>Title: </span>
