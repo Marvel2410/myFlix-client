@@ -47844,283 +47844,186 @@ var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _card = require("react-bootstrap/Card");
 var _cardDefault = parcelHelpers.interopDefault(_card);
 var _s = $RefreshSig$();
-const ProfileView = ({ user: user1 })=>{
+const ProfileView = ({ user })=>{
     _s();
-    const [newUsername1, setNewUsername1] = (0, _react.useState)(user1.Username);
-    const [newPassword1, setNewPassword1] = (0, _react.useState)("");
-    const [newEmail1, setNewEmail1] = (0, _react.useState)(user1.Email);
-    const [newBirthday1, setNewBirthday1] = (0, _react.useState)(user1.Birthday);
-    const [favoriteMovies1, setFavoriteMovies] = (0, _react.useState)(user1.FavoriteMovies);
-    const handleFavorite = (movie)=>{
-        if (favoriteMovies1.includes(movie._id)) {
-            const updatedFavorites = favoriteMovies1.filter((id)=>id !== movie._id);
-            setFavoriteMovies(updatedFavorites);
-        } else {
-            const updatedFavorites = [
-                ...favoriteMovies1,
-                movie._id
-            ];
-            setFavoriteMovies(updatedFavorites);
-        }
-        const username = user1.Username;
-        const token1 = localStorage.getItem("token");
-        fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${movie.title}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token1}`
-            },
-            body: JSON.stringify({
-                FavoriteMovies: favoriteMovies1
-            })
-        }).then((response)=>response.json()).then((data)=>{
-            console.log("Updated favorites on server:", data);
-        }).catch((error)=>console.error("Error updating favorites:", error));
+    const [newUsername, setNewUsername] = (0, _react.useState)(user.Username);
+    const [newPassword, setNewPassword] = (0, _react.useState)("");
+    const [newEmail, setNewEmail] = (0, _react.useState)(user.Email);
+    const [newBirthday, setNewBirthday] = (0, _react.useState)(user.Birthday);
+    const handleUpdate = ()=>{
+    // Implement the logic to update user information here.
     };
-};
-_s(ProfileView, "sIXueriU1J51ZuB4m6x/Y1+3dcA=");
-_c = ProfileView;
-const renderFavoriteMovies = ()=>{
-    if (favoriteMovies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: "No favorite movies yet."
-    }, void 0, false, {
-        fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 45,
-        columnNumber: 12
-    }, undefined);
+    const handleDeregister = ()=>{
+    // Implement the logic to deregister user here.
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: "Favorite Movies:"
-            }, void 0, false, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 50,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
-                children: favoriteMovies.map((movieId)=>{
-                    const movie = movies.find((m)=>m.id === movieId);
-                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: movie ? movie.title : "Movie not found"
-                    }, movieId, false, {
+        className: "container",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+            style: {
+                width: "18rem"
+            },
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Body, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Title, {
+                        children: "Profile"
+                    }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 55,
-                        columnNumber: 13
-                    }, undefined);
-                })
-            }, void 0, false, {
+                        lineNumber: 26,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                controlId: "formUsername",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                        children: "Username:"
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 29,
+                                        columnNumber: 15
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                        type: "text",
+                                        value: newUsername,
+                                        onChange: (e)=>setNewUsername(e.target.value),
+                                        required: true,
+                                        minLength: "3"
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 30,
+                                        columnNumber: 15
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 28,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                controlId: "formPassword",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                        children: "New Password:"
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 40,
+                                        columnNumber: 15
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                        type: "password",
+                                        value: newPassword,
+                                        onChange: (e)=>setNewPassword(e.target.value)
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 41,
+                                        columnNumber: 15
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 39,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                controlId: "formEmail",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                        children: "Email:"
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 49,
+                                        columnNumber: 15
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                        type: "email",
+                                        value: newEmail,
+                                        onChange: (e)=>setNewEmail(e.target.value)
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 50,
+                                        columnNumber: 15
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 48,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                controlId: "formBirthday",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                        children: "Date of Birth:"
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 58,
+                                        columnNumber: 15
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                        type: "date",
+                                        value: newBirthday,
+                                        onChange: (e)=>setNewBirthday(e.target.value)
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 59,
+                                        columnNumber: 15
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 57,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                variant: "primary",
+                                onClick: handleUpdate,
+                                children: "Update"
+                            }, void 0, false, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 66,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                variant: "danger",
+                                onClick: handleDeregister,
+                                children: "Deregister"
+                            }, void 0, false, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 70,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/profile-view/profile-view.jsx",
+                        lineNumber: 27,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 51,
-                columnNumber: 7
+                lineNumber: 25,
+                columnNumber: 9
             }, undefined)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 49,
-        columnNumber: 5
-    }, undefined);
-};
-const handleUpdate = ()=>{
-    const data = {
-        Username: newUsername,
-        Password: newPassword,
-        Email: newEmail,
-        Birthday: newBirthday
-    };
-    fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${user.Username}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(data)
-    }).then((response)=>response.json()).then((data)=>{
-        console.log("Update response:", data);
-        alert("User information updated successfully!");
-    }).catch((error)=>{
-        console.error("Error updating user information:", error);
-        alert("Something went wrong. Please try again.");
-    });
-};
-const handleDeregister = ()=>{
-    fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${user.Username}`, {
-        method: "DELETE",
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then((response)=>{
-        if (response.ok) {
-            alert("User deregistered successfully!");
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-        } else alert("Something went wrong. Please try again.");
-    }).catch((error)=>{
-        console.error("Error deregistering user:", error);
-        alert("Something went wrong. Please try again.");
-    });
-};
-exports.default = ProfileView;
-var _c;
-return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-    className: "container",
-    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
-        style: {
-            width: "18rem"
-        },
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Body, {
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Title, {
-                    children: "Profile"
-                }, void 0, false, {
-                    fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 120,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                            controlId: "formUsername",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                    children: "Username:"
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 123,
-                                    columnNumber: 13
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                    type: "text",
-                                    value: newUsername,
-                                    onChange: (e)=>setNewUsername(e.target.value),
-                                    required: true,
-                                    minLength: "3"
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 124,
-                                    columnNumber: 13
-                                }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 122,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                            controlId: "formPassword",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                    children: "New Password:"
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 134,
-                                    columnNumber: 13
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                    type: "password",
-                                    value: newPassword,
-                                    onChange: (e)=>setNewPassword(e.target.value)
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 135,
-                                    columnNumber: 13
-                                }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 133,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                            controlId: "formEmail",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                    children: "Email:"
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 143,
-                                    columnNumber: 13
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                    type: "email",
-                                    value: newEmail,
-                                    onChange: (e)=>setNewEmail(e.target.value)
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 144,
-                                    columnNumber: 13
-                                }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 142,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                            controlId: "formBirthday",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                    children: "Date of Birth:"
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 152,
-                                    columnNumber: 13
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                    type: "date",
-                                    value: newBirthday,
-                                    onChange: (e)=>setNewBirthday(e.target.value)
-                                }, void 0, false, {
-                                    fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 153,
-                                    columnNumber: 13
-                                }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 151,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                            variant: "primary",
-                            onClick: handleUpdate,
-                            children: "Update"
-                        }, void 0, false, {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 160,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                            variant: "danger",
-                            onClick: handleDeregister,
-                            children: "Deregister"
-                        }, void 0, false, {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 164,
-                            columnNumber: 11
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 121,
-                    columnNumber: 9
-                }, undefined)
-            ]
-        }, void 0, true, {
+        }, void 0, false, {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 119,
+            lineNumber: 24,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 118,
+        lineNumber: 23,
         columnNumber: 5
-    }, undefined)
-}, void 0, false, {
-    fileName: "src/components/profile-view/profile-view.jsx",
-    lineNumber: 117,
-    columnNumber: 3
-}, undefined);
+    }, undefined);
+};
+_s(ProfileView, "GG8JM0IcymtNO2Vp9JEz1kx9qSE=");
+_c = ProfileView;
+// ProfileView.propTypes = {
+//   user: PropTypes.object.isRequired,
+// };
+exports.default = ProfileView;
+var _c;
+$RefreshReg$(_c, "ProfileView");
 
   $parcel$ReactRefreshHelpers$3c12.postlude(module);
 } finally {
