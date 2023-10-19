@@ -1,36 +1,20 @@
+// Update:: grab useParams from react-router. This will let us take the URL and store it into a variable.
+import { useParams } from "react-router-dom";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './movie-view.scss';
 
+// Update:: Changed the prop to movies
+const MovieView = ({ movies }) => {
+  //Update:: grab movieId from the URL. Console log ID to ensure we have the URL param we expect.
+  const { movieId } = useParams();
+  console.log('movieId ', movieId)
 
-const handleFavorite = (movie) => {
-  if (favoriteMovies.includes(movie._id)) {
-    // If the movie is already in favorites, remove it
-    const updatedFavorites = favoriteMovies.filter(id => id !== movie._id);
-    setFavoriteMovies(updatedFavorites);
-  } else {
-    // If the movie is not in favorites, add it
-    const updatedFavorites = [...favoriteMovies, movie._id];
-    setFavoriteMovies(updatedFavorites);
-  }
-  fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${movie.title}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ FavoriteMovies: favoriteMovies }),
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log("Updated favorites on server:", data);
-    })
-    .catch(error => console.error('Error updating favorites:', error));
-};
-
-
-const MovieView = ({ movie, handleFavorite }) => {
+  //Update::find the clicked movie. We will use the .find() array method to search through the movies array. We are looking for the movie with an ID that matches the URL param. More on the .find() method here : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+  const movie = movies.find((m) => m.id === movieId);
+  //Update::Log the movie. Console log's are my best friend when coding. The more data I can see the better. Here I want to confirm we have everything we need to display in the retrun code below. 
+  console.log('movie ', movie)
   return (
     <div>
       <div>
@@ -52,10 +36,6 @@ const MovieView = ({ movie, handleFavorite }) => {
         <span>Genre: </span>
         <span>{movie.genre}</span>
       </div>
-      <Button variant="primary" onClick={() => handleFavorite(movie)}>
-        Favorite
-      </Button>
-
       <div className="button">
         <Link to="/"> Back </Link>
       </div>
@@ -63,9 +43,8 @@ const MovieView = ({ movie, handleFavorite }) => {
   );
 };
 
-MovieView.propTypes = {
-  movie: PropTypes.object.isRequired,
-  handleFavorite: PropTypes.func.isRequired,
-};
+// MovieView.propTypes = {
+//   movie: PropTypes.object.isRequired
+// };
 
 export default MovieView;
