@@ -1,12 +1,19 @@
 // Update:: grab useParams from react-router. This will let us take the URL and store it into a variable.
 import { useParams } from "react-router-dom";
 import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './movie-view.scss';
 
+
 // Update:: Changed the prop to movies
 const MovieView = ({ movies }) => {
+  const [isFavorite, setIsFavorite] = useState(false); //NEW
+
+  const toggleFavorite = () => { //NEW
+    setIsFavorite(prevState => !prevState); //NEW
+  }
   //Update:: grab movieId from the URL. Console log ID to ensure we have the URL param we expect.
   const { movieId } = useParams();
   console.log('movieId ', movieId)
@@ -25,6 +32,7 @@ const MovieView = ({ movies }) => {
       <div>
         <span>Title: </span>
         <span>{movie.title}</span>
+
       </div>
       <div>
         <span>Description: </span>
@@ -40,6 +48,11 @@ const MovieView = ({ movies }) => {
       </div>
       <div className="button">
         <Link to="/"> Back </Link>
+      </div>
+      <div>
+        <button onClick={toggleFavorite}>
+          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        </button>
       </div>
     </div>
   );
