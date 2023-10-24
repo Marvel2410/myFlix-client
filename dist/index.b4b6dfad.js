@@ -47434,7 +47434,7 @@ const MovieView = ({ movies, username, token })=>{
     const [isFavorite, setIsFavorite] = (0, _react.useState)(false);
     const addToFavorites = async (movieTitle)=>{
         try {
-            const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${encodeURIComponent(movieTitle)}`, {
+            const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/username/favorites/movieTitle`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`
