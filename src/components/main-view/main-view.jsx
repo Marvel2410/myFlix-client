@@ -6,9 +6,9 @@ import NavigationBar from '../navigation-bar/navigation-bar';
 import ProfileView from '../profile-view/profile-view';
 import SignupView from '../signup-view/signup-view';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'; // Updated import statements
-// import Row from 'react-bootstrap/Row';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
+
 import { Button, Container, Nav, Row } from 'react-bootstrap';
 
 import './main-view.scss';
@@ -96,7 +96,7 @@ const MainView = () => {
                       {movies.map((movie) => (
                         <Col xs={12} s={8} md={4} className="mb-5" key={movie.id}>
                           <MovieCard
-                            movie={movie} user={user} />
+                            movie={movie} token={token} user={user} setUser={setUser} />
                         </Col>
                       ))}
                     </>
@@ -107,7 +107,7 @@ const MainView = () => {
             {/* Update:: changing the prop to movies not movie. We will pass in our entire list here and filter in that component. */}
             <Route
               path="/movies/:movieId"
-              element={<MovieView movies={movies} username={user.username} token={token} />}
+              element={<MovieView movies={movies} username={user ? user.username : null} token={token} />}
             />
             <Route
               path="/profile"

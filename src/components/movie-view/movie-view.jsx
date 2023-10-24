@@ -7,17 +7,23 @@ import { Link } from 'react-router-dom';
 import './movie-view.scss';
 
 
+
 // Update:: Changed the prop to movies
-const MovieView = ({ movies, username, token }) => {
+const MovieView = ({ movies, token, username }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+
   const addToFavorites = async (movieTitle) => {
+
     try {
-      const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/username/favorites/movieTitle`, {
+      const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${movieTitle}`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
+      console.log('username', username);
+      console.log('token', token);
+      console.log('movieTitle', movieTitle);
 
       if (response.ok) {
         setIsFavorite(true);
@@ -29,7 +35,7 @@ const MovieView = ({ movies, username, token }) => {
 
   const removeFromFavorites = async (movieTitle) => {
     try {
-      const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${encodeURIComponent(movieTitle)}`, {
+      const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${movie._id}`, {
         method: 'DELETE',
       });
 
@@ -97,7 +103,7 @@ const MovieView = ({ movies, username, token }) => {
 
 MovieView.propTypes = {
   movies: PropTypes.array.isRequired,
-  username: PropTypes.string.isRequired,
+  //username: PropTypes.string.isRequired,
 }
 
 export default MovieView;
