@@ -8,14 +8,51 @@ import './movie-view.scss';
 
 
 // Update:: Changed the prop to movies
-const MovieView = ({ movies }) => {
-  const [isFavorite, setIsFavorite] = useState(false); //NEW
+const MovieView = ({ movies, username, token }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const addToFavorites = async (movieTitle) => {
+    try {
+      const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${encodeURIComponent(movieTitle)}`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
 
-  const toggleFavorite = () => { //NEW
-    setIsFavorite(prevState => !prevState); //NEW
-  }
+      if (response.ok) {
+        setIsFavorite(true);
+      }
+    } catch (error) {
+      console.error('Error adding movie to favorites:', error);
+    }
+  };
+
+  const removeFromFavorites = async (movieTitle) => {
+    try {
+      const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${encodeURIComponent(movieTitle)}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setIsFavorites(false);
+      }
+    } catch (error) {
+      console.error('Error removing movie from favorites:', error);
+    }
+  };
+
+  const toggleFavorite = (movieTitle) => {
+    if (isFavorite) {
+      removeFromFavorites(movieTitle);
+    } else {
+      addToFavorites(movieTitle);
+    }
+  };
+
   //Update:: grab movieId from the URL. Console log ID to ensure we have the URL param we expect.
   const { movieId } = useParams();
+
+
   console.log('movieId ', movieId)
 
   //Update::find the clicked movie. We will use the .find() array method to search through the movies array. We are looking for the movie with an ID that matches the URL param. More on the .find() method here : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
@@ -58,8 +95,9 @@ const MovieView = ({ movies }) => {
   );
 };
 
-// MovieView.propTypes = {
-//   movie: PropTypes.object.isRequired
-// };
+MovieView.propTypes = {
+  movies: PropTypes.array.isRequired,
+  username: PropTypes.string.isRequired,
+}
 
 export default MovieView;

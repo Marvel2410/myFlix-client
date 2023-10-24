@@ -18,6 +18,7 @@ const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
 
+
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [movies, setMovies] = useState([]);
   const [token, setToken] = useState(storedToken ? storedToken : null);
@@ -93,7 +94,7 @@ const MainView = () => {
                   ) : (
                     <>
                       {movies.map((movie) => (
-                        <Col xs={12} s={8} md={4} className="mb-5" key={movie._id}>
+                        <Col xs={12} s={8} md={4} className="mb-5" key={movie.id}>
                           <MovieCard
                             movie={movie} user={user} />
                         </Col>
@@ -106,7 +107,7 @@ const MainView = () => {
             {/* Update:: changing the prop to movies not movie. We will pass in our entire list here and filter in that component. */}
             <Route
               path="/movies/:movieId"
-              element={<MovieView movies={movies} />}
+              element={<MovieView movies={movies} username={user.username} token={token} />}
             />
             <Route
               path="/profile"
