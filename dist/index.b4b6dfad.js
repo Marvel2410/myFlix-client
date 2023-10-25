@@ -27469,7 +27469,7 @@ const MainView = ()=>{
                                 path: "/movies/:movieId",
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieViewDefault.default), {
                                     movies: movies,
-                                    username: user ? user.username : null,
+                                    username: user ? user.Username : null,
                                     token: token
                                 }, void 0, false, void 0, void 0)
                             }, void 0, false, {
