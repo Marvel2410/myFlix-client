@@ -47648,7 +47648,7 @@ const MovieView = ({ movies, token, username })=>{
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    onClick: toggleFavorite,
+                    onClick: ()=>toggleFavorite(movie.title),
                     children: isFavorite ? "Remove from Favorites" : "Add to Favorites"
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",

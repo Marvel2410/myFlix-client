@@ -93,7 +93,7 @@ const MovieView = ({ movies, token, username }) => {
         <Link to="/"> Back </Link>
       </div>
       <div>
-        <button onClick={toggleFavorite}>
+        <button onClick={() => toggleFavorite(movie.title)}>
           {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
         </button>
       </div>
