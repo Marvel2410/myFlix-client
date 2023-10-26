@@ -18,15 +18,37 @@ const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
 
-
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [movies, setMovies] = useState([]);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
-
-
   const [search, setSearch] = useState("");
   // const [filteredMovies, setFilteredMovies] = useState({});
+
+
+  const handleUpdateProfile = (updatedUserData) => {
+    if (!token) {
+      return;
+    }
+
+    fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${user.Username}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(updatedUserData)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('User profile updated:', data);
+        setUser(data);
+      })
+      .catch(error => {
+        console.error('Error updating user profile:', error);
+      });
+  };
+
 
   useEffect(() => {
     if (!token) return;
@@ -81,6 +103,16 @@ const MainView = () => {
                 }}
               />
             } />
+            <Route
+              path="/profile"
+              element={<ProfileView
+                user={user}
+                token={token}
+                movie={movies}
+                setUser={setUser}
+                onUpdateProfile={handleUpdateProfile}
+              />}
+            />
             <Route path="/signup" element={<SignupView />} />
             {/* Update:: base route now either sends user to login (if not logged in) or shows the list of movies */}
             <Route
@@ -121,6 +153,7 @@ const MainView = () => {
     </Router>
   );
 };
+
 
 MainView.propTypes = {
   onLoggedOut: PropTypes.func

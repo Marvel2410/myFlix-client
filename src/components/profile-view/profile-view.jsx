@@ -5,15 +5,23 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
-const ProfileView = ({ user }) => {
+const ProfileView = ({ user, onUpdateProfile }) => {
   const [newUsername, setNewUsername] = useState(user.Username);
   const [newPassword, setNewPassword] = useState("");
   const [newEmail, setNewEmail] = useState(user.Email);
   const [newBirthday, setNewBirthday] = useState(user.Birthday);
 
   const handleUpdate = () => {
-    // Implement the logic to update user information here.
+    const updatedUserData = {
+      Username: newUsername,
+      Password: newPassword,
+      Email: newEmail,
+      Birthday: newBirthday
+    };
+
+    onUpdateProfile(updatedUserData);
   };
+  localStorage.clear();
 
   const handleDeregister = () => {
     // Implement the logic to deregister user here.
@@ -77,8 +85,9 @@ const ProfileView = ({ user }) => {
   );
 };
 
-// ProfileView.propTypes = {
-//   user: PropTypes.object.isRequired,
-// };
+ProfileView.propTypes = {
+  user: PropTypes.object.isRequired,
+  onUpdateProfile: PropTypes.func.isRequired,
+};
 
 export default ProfileView;
