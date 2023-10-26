@@ -5,61 +5,7 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import './movie-card.scss'
 
-const MovieCard = ({ movie, token, setUser, user, username }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const toggleFavorite = () => {
-    setIsFavorite(prevState => !prevState);
-  };
-
-  const addFavoriteMovie = () => {
-    fetch(
-      `https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/movies/${movie._id}`,
-      { method: "POST", headers: { Authorization: `Bearer ${token}` } }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          console.log("Failed to add fav movie");
-        }
-      })
-      .then((user) => {
-        if (user) {
-          alert("successfully added to favorites");
-          localStorage.setItem("user", JSON.stringify(user));
-          setUser(user);
-          setIsFavorite(true);
-        }
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  };
-
-  const removeFavoriteMovie = () => {
-    fetch(
-      `https://movies-myflix-85528af4e39c.herokuapp.com/${username}/movies/${movie._id}`,
-      { method: "DELETE", headers: { Authorization: `Bearer ${token}` } }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          alert("Failed");
-        }
-      })
-      .then((user) => {
-        if (user) {
-          alert("successfully deleted from favorites");
-          localStorage.setItem("user", JSON.stringify(user));
-          setUser(user);
-          setIsFavorite(false);
-        }
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  };
+const MovieCard = ({ movie }) => {
 
 
 
@@ -73,9 +19,6 @@ const MovieCard = ({ movie, token, setUser, user, username }) => {
         <Card.Title>{movie.title}</Card.Title>
         <Link to={`/movies/${movie.id}`}>Open</Link>
         <div>
-          <button onClick={toggleFavorite}>
-            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-          </button>
         </div>
       </Card.Body>
     </Card>
