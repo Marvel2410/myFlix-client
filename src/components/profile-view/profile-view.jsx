@@ -19,6 +19,8 @@ const ProfileView = ({ user, onUpdateProfile }) => {
       Birthday: newBirthday
     };
 
+    console.log("updated user data:", updatedUserData);
+
     const token = localStorage.getItem("token");
     fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${user.Username}`, {
       method: 'PUT',
@@ -31,7 +33,7 @@ const ProfileView = ({ user, onUpdateProfile }) => {
       .then(response => response.json())
       .then(data => {
         console.log('User profile updated:', data);
-        setUser(data);
+        onUpdateProfile(data);
       })
       .catch(error => {
         console.error('Error updating user profile:', error);

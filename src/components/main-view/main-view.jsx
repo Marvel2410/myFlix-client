@@ -25,6 +25,10 @@ const MainView = () => {
   const [search, setSearch] = useState("");
   // const [filteredMovies, setFilteredMovies] = useState({});
 
+  const handleUpdateProfile = (updatedUserData) => {
+
+  };
+
 
   useEffect(() => {
     if (!token) return;
