@@ -82,53 +82,5 @@ const LoginView = ({ onLoggedIn }) => {
   );
 };
 
-
-/*
-<Container className="margin-top-custom">
-  <Row className="justify-content-md-center">
-    <Col md={5}>
-      <Card style={{ width: '18rem' }}>
-        <Card.Body>
-          <Card.Title>Login</Card.Title>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group>
-              <Form.Label>username:
-                <Form.Control
-                  type="text"
-                  value={username}
-                  onChange={(e) => {
-                    setUserName(e.target.value);
-                  }}
-                  required
-                  placeholder="enter username"
-                />
-              </Form.Label>
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>password:
-                <Form.Control
-                  type="password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                  required
-                  placeholder="enter password"
-                />
-              </Form.Label>
-            </Form.Group>
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
-              Submit
-            </Button>
-          </Form> {" "}
-        </Card.Body>
-      </Card>
-    </Col>
-  </Row>
-</Container>
-);
-};
-*/
 export default LoginView;
 

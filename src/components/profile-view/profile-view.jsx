@@ -8,16 +8,25 @@ import Card from 'react-bootstrap/Card';
 const ProfileView = ({ user, onUpdateProfile }) => {
   const [newUsername, setNewUsername] = useState(user.Username);
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [newEmail, setNewEmail] = useState(user.Email);
   const [newBirthday, setNewBirthday] = useState(user.Birthday);
 
   const handleUpdate = () => {
+    if (newPassword !== confirmPassword) {
+      alert("Passwords do not match.  Please try again.");
+      return;
+    }
+
     const updatedUserData = {
       Username: newUsername,
-      Password: newPassword,
       Email: newEmail,
       Birthday: newBirthday
     };
+
+    if (newPassword) {
+      updatedUserData.Password = newPassword;
+    }
 
     console.log("updated user data:", updatedUserData);
 
@@ -68,6 +77,15 @@ const ProfileView = ({ user, onUpdateProfile }) => {
                 type="password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formPasswordConfirm">
+              <Form.Label>Confirm New Password:</Form.Label>
+              <Form.Control
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </Form.Group>
 
