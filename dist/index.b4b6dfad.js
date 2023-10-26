@@ -47457,10 +47457,10 @@ const MovieView = ({ movies, token, username })=>{
     };
     const removeFromFavorites = async (movieTitle)=>{
         try {
-            const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${movie._id}`, {
+            const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${movieTitle}`, {
                 method: "DELETE"
             });
-            if (response.ok) setIsFavorites(false);
+            if (response.ok) setIsFavorite(false);
         } catch (error) {
             console.error("Error removing movie from favorites:", error);
         }
