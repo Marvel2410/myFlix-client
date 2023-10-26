@@ -26,30 +26,6 @@ const MainView = () => {
   // const [filteredMovies, setFilteredMovies] = useState({});
 
 
-  const handleUpdateProfile = (updatedUserData) => {
-    if (!token) {
-      return;
-    }
-
-    fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${user.Username}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify(updatedUserData)
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('User profile updated:', data);
-        setUser(data);
-      })
-      .catch(error => {
-        console.error('Error updating user profile:', error);
-      });
-  };
-
-
   useEffect(() => {
     if (!token) return;
 
