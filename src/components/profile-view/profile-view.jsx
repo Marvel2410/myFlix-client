@@ -21,7 +21,8 @@ const ProfileView = ({ user, onUpdateProfile }) => {
 
     onUpdateProfile(updatedUserData);
   };
-  localStorage.clear();
+
+
 
   const handleDeregister = () => {
     // Implement the logic to deregister user here.
