@@ -51,7 +51,20 @@ const ProfileView = ({ user, onUpdateProfile }) => {
 
 
   const handleDeregister = () => {
-    // Implement the logic to deregister user here.
+    const token = localStorage.getItem("token");
+    fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${user.Username}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('User deregistered:', data);
+      })
+      .catch(error => {
+        console.error('Error deregistering user:', error);
+      });
   };
 
   return (
@@ -120,6 +133,7 @@ const ProfileView = ({ user, onUpdateProfile }) => {
     </div>
   );
 };
+
 
 ProfileView.propTypes = {
   user: PropTypes.object.isRequired,
