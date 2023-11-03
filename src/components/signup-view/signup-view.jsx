@@ -10,18 +10,19 @@ const SignupView = () => {
     event.preventDefault();
 
     const data = {
-      username: username,
-      password: password,
-      email: email,
-      birthday: birthday
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
     };
 
     fetch("https://movies-myflix-85528af4e39c.herokuapp.com/users", {
       method: "POST",
-      body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data)
+
     }).then(async (response) => {
       console.log(response)
       if (response.ok) {

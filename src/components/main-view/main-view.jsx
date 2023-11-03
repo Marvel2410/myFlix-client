@@ -53,14 +53,14 @@ const MainView = () => {
   }, [token]);
 
 
-  if (!user) {
-    return <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />;
-  }
+  // if (!user) {
+  //   return <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />;
+  //  }
 
 
-  if (!movies || movies.length === 0) {
-    return <div>The List is empty!</div>;
-  }
+  //if (!movies || movies.length === 0) {
+  //   return <div>The List is empty!</div>;
+  //  }
 
   return (
     <Router>
