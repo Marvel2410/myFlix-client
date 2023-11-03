@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import { Container, Col, Row, Form, CardBody, CardTitle } from 'react-bootstrap';
 
 
+
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -72,6 +73,13 @@ const LoginView = ({ onLoggedIn }) => {
 
                 <Button type="submit" className="submit">
                   Submit
+                </Button>
+                <Button type="signup"
+                  className="sign up"
+                  onClick={() => window.location.href = '/signup'}
+                >
+                  New User? Sign Up
+
                 </Button>
               </Form>
             </CardBody>

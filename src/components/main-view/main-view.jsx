@@ -93,8 +93,20 @@ const MainView = () => {
                 onUpdateProfile={handleUpdateProfile}
               />}
             />
-            <Route path="/signup" element={<SignupView />} />
-            {/* Update:: base route now either sends user to login (if not logged in) or shows the list of movies */}
+            <Route
+              path="/signup"
+              element={
+                <>
+                  {user ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Col md={6}>
+                      <SignupView />
+                    </Col>
+                  )}
+                </>
+              }
+            />
             <Route
               path="/"
               element={

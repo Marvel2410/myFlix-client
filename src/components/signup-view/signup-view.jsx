@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const SignupView = () => {
   const [username, setUsername] = useState('');
@@ -9,7 +9,32 @@ const SignupView = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-  };
+    const data = {
+      username: username,
+      password: password,
+      email: email,
+      birthday: birthday
+    };
+
+    fetch("https://movies-myflix-85528af4e39c.herokuapp.com/users", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(async (response) => {
+      console.log(response)
+      if (response.ok) {
+        alert('Signup successful')
+        window.location.reload()
+      } else {
+        const e = await response.text()
+        console.log(e)
+        alert("Signup failed");
+      }
+    });
+  }
+
 
   return (
     <form onSubmit={handleSubmit}>
