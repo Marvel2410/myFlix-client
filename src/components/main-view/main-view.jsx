@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 
+
 import { Button, Container, Nav, Row } from 'react-bootstrap';
 
 import './main-view.scss';
@@ -26,6 +27,8 @@ const MainView = () => {
   // const [filteredMovies, setFilteredMovies] = useState({});
 
   const handleUpdateProfile = (updatedUserData) => {
+
+
 
   };
 
@@ -80,7 +83,9 @@ const MainView = () => {
                 onLoggedIn={(user, token) => {
                   setUser(user);
                   setToken(token);
+
                 }}
+
               />
             } />
             <Route

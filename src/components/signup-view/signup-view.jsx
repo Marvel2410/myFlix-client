@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const SignupView = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,7 +29,8 @@ const SignupView = () => {
       console.log(response)
       if (response.ok) {
         alert('Signup successful')
-        window.location.reload()
+        navigate('/login');
+        //window.location.reload()
       } else {
         const e = await response.text()
         console.log(e)
