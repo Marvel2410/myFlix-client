@@ -85,6 +85,22 @@ const ProfileView = ({ user, onUpdateProfile }) => {
       });
   };
 
+  const handleRemoveFavorite = (movieId) => {
+    const token = localStorage.getItem("token");
+    fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${user.Username}/favorites/${movieId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Movie removed from favorites:', data);
+        setFavoriteMovies(favoriteMovies.filter(movie => movie.id !== movieId));
+      })
+      .catch(error => console.error('Error removing movie from favorites:', error));
+  };
+
   return (
     <div className="container">
       <Card style={{ width: '18rem' }}>
@@ -149,7 +165,12 @@ const ProfileView = ({ user, onUpdateProfile }) => {
               <Form.Label>Favorite Movies:</Form.Label>
               <ul>
                 {favoriteMovies.map(movie => (
-                  <li key={movie._id}>{movie.Title}</li>
+                  <li key={movie._id}>{movie.Title}
+                    <Button variant="danger" size="sm" onClick={() => handleRemoveFavorite(movie.id)}>
+                      Remove
+                    </Button>
+                  </li>
+
                 ))}
               </ul>
             </Form.Group>
