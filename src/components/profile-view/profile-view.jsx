@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -11,6 +11,24 @@ const ProfileView = ({ user, onUpdateProfile }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [newEmail, setNewEmail] = useState(user.Email);
   const [newBirthday, setNewBirthday] = useState(user.Birthday);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const token = localStorage.getItem("token");
+    fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${user.Username}/favorites`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Favorite Movies from API:", data);
+        setFavoriteMovies(data);
+      })
+      .catch(error => console.error('Error fetching favorite movies:', error));
+  }, [user]);
 
   const handleUpdate = () => {
     if (newPassword !== confirmPassword) {
@@ -127,6 +145,14 @@ const ProfileView = ({ user, onUpdateProfile }) => {
             <Button variant="danger" onClick={handleDeregister}>
               Deregister
             </Button>
+            <Form.Group controlId="formFavoriteMovies">
+              <Form.Label>Favorite Movies:</Form.Label>
+              <ul>
+                {favoriteMovies.map(movie => (
+                  <li key={movie._id}>{movie.Title}</li>
+                ))}
+              </ul>
+            </Form.Group>
           </Form>
         </Card.Body>
       </Card>
