@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
-const ProfileView = ({ user, onUpdateProfile }) => {
+const ProfileView = ({ user, username, onUpdateProfile }) => {
   const [newUsername, setNewUsername] = useState(user.Username);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -85,20 +85,24 @@ const ProfileView = ({ user, onUpdateProfile }) => {
       });
   };
 
-  const handleRemoveFavorite = (movieId) => {
-    const token = localStorage.getItem("token");
-    fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${user.Username}/favorites/${movieId}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`
+  const removeFromFavorites = async (movieTitle) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${user.Username}/favorites/${movieTitle}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      console.log('API Response:', response);
+
+      if (response.ok) {
+        setFavoriteMovies(favoriteMovies.filter(movie => movie.Title !== movieTitle)); // Update the favoriteMovies state
       }
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Movie removed from favorites:', data);
-        setFavoriteMovies(favoriteMovies.filter(movie => movie.id !== movieId));
-      })
-      .catch(error => console.error('Error removing movie from favorites:', error));
+    } catch (error) {
+      console.error('Error removing movie from favorites:', error);
+    }
   };
 
   return (
@@ -166,7 +170,7 @@ const ProfileView = ({ user, onUpdateProfile }) => {
               <ul>
                 {favoriteMovies.map(movie => (
                   <li key={movie._id}>{movie.Title}
-                    <Button variant="danger" size="sm" onClick={() => handleRemoveFavorite(movie.id)}>
+                    <Button variant="danger" size="sm" onClick={() => removeFromFavorites(movie.Title)}>
                       Remove
                     </Button>
                   </li>
