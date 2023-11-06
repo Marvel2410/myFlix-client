@@ -1,21 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { MovieCard } from '../movie-card/movie-card';
-import { MovieView } from '../movie-view/movie-view';
-import { LoginView } from '../login-view/login-view';
-import { SignupView } from '../signup-view/signup-view';
+import MovieCard from '../movie-card/movie-card';
+import MovieView from '../movie-view/movie-view';
+import LoginView from '../login-view/login-view';
+import NavigationBar from '../navigation-bar/navigation-bar';
+import ProfileView from '../profile-view/profile-view';
+import SignupView from '../signup-view/signup-view';
 import PropTypes from 'prop-types';
-import "../../index.scss";
-//import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
+
+
+import { Button, Container, Nav, Row } from 'react-bootstrap';
+
 import './main-view.scss';
+import "../../index.scss";
 
+const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
 
-export const MainView = () => {
+  const [user, setUser] = useState(storedUser ? storedUser : null);
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(storedToken ? storedToken : null);
+
+  const [search, setSearch] = useState("");
+  // const [filteredMovies, setFilteredMovies] = useState({});
+
+  const handleUpdateProfile = (updatedUserData) => {
+
+
+
+  };
+
 
   useEffect(() => {
     if (!token) return;
@@ -39,52 +55,105 @@ export const MainView = () => {
       .catch(error => console.error('Error fetching movies:', error));
   }, [token]);
 
-  if (!user) {
-    return <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />;
-  }
 
-  if (selectedMovie) {
-    return (
-      <MovieView
-        movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-    );
-  }
-  if (movies.length === 0) {
-    return <div>The List is empty!</div>;
-  }
+  // if (!user) {
+  //   return <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />;
+  //  }
 
+
+  //if (!movies || movies.length === 0) {
+  //   return <div>The List is empty!</div>;
+  //  }
 
   return (
-    <div className="main-view">
-      <Row>
-        {movies.map((movie) => (
-          <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              onMovieClick={(newSelectedMovie) =>
-                setSelectedMovie(newSelectedMovie)
+    <Router>
+      <div className="main-view">
+        <NavigationBar
+          user={user} movies={movies} search={search} onLoggedOut={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+        />
+
+        <Row className="margin-top-custom justify-content-center mb-5">
+          <Routes>
+            <Route path="/login" element={
+              <LoginView
+                onLoggedIn={(user, token) => {
+                  setUser(user);
+                  setToken(token);
+
+                }}
+
+              />
+            } />
+            <Route
+              path="/profile"
+              element={<ProfileView
+                user={user}
+                token={token}
+                movie={movies}
+                setUser={setUser}
+                onUpdateProfile={handleUpdateProfile}
+              />}
+            />
+            <Route
+              path="/signup"
+              element={
+                <>
+                  {user ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Col md={6}>
+                      <SignupView />
+                    </Col>
+                  )}
+                </>
               }
             />
-          </Col>
-        ))}
+            <Route
+              path="/"
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    <>
+                      {movies.map((movie) => (
+                        <Col xs={12} s={8} md={4} className="mb-5" key={movie.id}>
+                          <MovieCard
+                            movie={movie} token={token} user={user} setUser={setUser} />
+                        </Col>
+                      ))}
+                    </>
+                  )}
+                </>
+              }
+            />
+            {/* Update:: changing the prop to movies not movie. We will pass in our entire list here and filter in that component. */}
+            <Route
+              path="/movies/:movieId"
+              element={<MovieView movies={movies} username={user ? user.Username : null} token={token} />}
+            />
+            <Route
+              path="/profile"
+              element={<ProfileView user={user} token={token} movie={movies} setUser={setUser} />}
+            />
 
-      </Row>
-      <button className="logoutbutton" onClick={() => {
-        setUser(null); setToken(null); localStorage.clear();
-      }}
-      >
-        Logout
 
-      </button>
-
-    </div>
+          </Routes>
+        </Row>
+      </div>
+    </Router>
   );
 };
 
 
 MainView.propTypes = {
-  movies: PropTypes.array.isRequired,
+  onLoggedOut: PropTypes.func
 };
 
 export default MainView;

@@ -1,14 +1,44 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
-export const SignupView = () => {
+const SignupView = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  };
+
+    const data = {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
+    };
+
+    fetch("https://movies-myflix-85528af4e39c.herokuapp.com/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data)
+
+    }).then(async (response) => {
+      console.log(response)
+      if (response.ok) {
+        alert('Signup successful')
+        navigate('/login');
+        //window.location.reload()
+      } else {
+        const e = await response.text()
+        console.log(e)
+        alert("Signup failed");
+      }
+    });
+  }
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -53,3 +83,5 @@ export const SignupView = () => {
     </form>
   );
 };
+
+export default SignupView;
