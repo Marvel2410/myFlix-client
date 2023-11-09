@@ -3,15 +3,20 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
 
 
-const ProfileView = ({ user, username, onUpdateProfile }) => {
+
+
+const ProfileView = ({ user, username, onUpdateProfile, onLogout }) => {
   const [newUsername, setNewUsername] = useState(user.Username);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [newEmail, setNewEmail] = useState(user.Email);
   const [newBirthday, setNewBirthday] = useState(user.Birthday);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (!user) return;
@@ -79,6 +84,12 @@ const ProfileView = ({ user, username, onUpdateProfile }) => {
       .then(response => response.json())
       .then(data => {
         console.log('User deregistered:', data);
+        navigate('/login');
+
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+
+        onLogout();
       })
       .catch(error => {
         console.error('Error deregistering user:', error);

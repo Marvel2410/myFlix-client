@@ -48349,8 +48349,9 @@ var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _card = require("react-bootstrap/Card");
 var _cardDefault = parcelHelpers.interopDefault(_card);
+var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const ProfileView = ({ user, username, onUpdateProfile })=>{
+const ProfileView = ({ user, username, onUpdateProfile, onLogout })=>{
     _s();
     const [newUsername, setNewUsername] = (0, _react.useState)(user.Username);
     const [newPassword, setNewPassword] = (0, _react.useState)("");
@@ -48358,6 +48359,7 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
     const [newEmail, setNewEmail] = (0, _react.useState)(user.Email);
     const [newBirthday, setNewBirthday] = (0, _react.useState)(user.Birthday);
     const [favoriteMovies, setFavoriteMovies] = (0, _react.useState)([]);
+    const navigate = (0, _reactRouterDom.useNavigate)();
     (0, _react.useEffect)(()=>{
         if (!user) return;
         const token = localStorage.getItem("token");
@@ -48408,6 +48410,10 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
             }
         }).then((response)=>response.json()).then((data)=>{
             console.log("User deregistered:", data);
+            navigate("/login");
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            onLogout();
         }).catch((error)=>{
             console.error("Error deregistering user:", error);
         });
@@ -48439,7 +48445,7 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                         children: "Profile"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 112,
+                        lineNumber: 123,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
@@ -48451,7 +48457,7 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                         children: "Username:"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 115,
+                                        lineNumber: 126,
                                         columnNumber: 15
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -48460,31 +48466,6 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                         onChange: (e)=>setNewUsername(e.target.value),
                                         required: true,
                                         minLength: "3"
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 116,
-                                        columnNumber: 15
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 114,
-                                columnNumber: 13
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                                controlId: "formPassword",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                        children: "New Password:"
-                                    }, void 0, false, {
-                                        fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 126,
-                                        columnNumber: 15
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                        type: "password",
-                                        value: newPassword,
-                                        onChange: (e)=>setNewPassword(e.target.value)
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
                                         lineNumber: 127,
@@ -48497,13 +48478,38 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                controlId: "formPassword",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                        children: "New Password:"
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 137,
+                                        columnNumber: 15
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                        type: "password",
+                                        value: newPassword,
+                                        onChange: (e)=>setNewPassword(e.target.value)
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 138,
+                                        columnNumber: 15
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 136,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                                 controlId: "formPasswordConfirm",
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
                                         children: "Confirm New Password:"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 135,
+                                        lineNumber: 146,
                                         columnNumber: 15
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -48512,13 +48518,13 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                         onChange: (e)=>setConfirmPassword(e.target.value)
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 136,
+                                        lineNumber: 147,
                                         columnNumber: 15
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 134,
+                                lineNumber: 145,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -48528,7 +48534,7 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                         children: "Email:"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 144,
+                                        lineNumber: 155,
                                         columnNumber: 15
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -48537,13 +48543,13 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                         onChange: (e)=>setNewEmail(e.target.value)
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 145,
+                                        lineNumber: 156,
                                         columnNumber: 15
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 143,
+                                lineNumber: 154,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -48553,7 +48559,7 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                         children: "Date of Birth:"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 153,
+                                        lineNumber: 164,
                                         columnNumber: 15
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -48562,13 +48568,13 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                         onChange: (e)=>setNewBirthday(e.target.value)
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 154,
+                                        lineNumber: 165,
                                         columnNumber: 15
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 152,
+                                lineNumber: 163,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -48577,7 +48583,7 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                 children: "Update"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 161,
+                                lineNumber: 172,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -48586,7 +48592,7 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                 children: "Deregister"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 165,
+                                lineNumber: 176,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -48596,7 +48602,7 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                         children: "Favorite Movies:"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 169,
+                                        lineNumber: 180,
                                         columnNumber: 15
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
@@ -48610,50 +48616,54 @@ const ProfileView = ({ user, username, onUpdateProfile })=>{
                                                         children: "Remove"
                                                     }, void 0, false, {
                                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                                        lineNumber: 173,
+                                                        lineNumber: 184,
                                                         columnNumber: 21
                                                     }, undefined)
                                                 ]
                                             }, movie._id, true, {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 172,
+                                                lineNumber: 183,
                                                 columnNumber: 19
                                             }, undefined))
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 170,
+                                        lineNumber: 181,
                                         columnNumber: 15
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 168,
+                                lineNumber: 179,
                                 columnNumber: 13
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 113,
+                        lineNumber: 124,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 111,
+                lineNumber: 122,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 110,
+            lineNumber: 121,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 109,
+        lineNumber: 120,
         columnNumber: 5
     }, undefined);
 };
-_s(ProfileView, "9JkTBYBJdkqDlAp2oSthLrP6mOU=");
+_s(ProfileView, "IQu8eWsLSudguMpNe13LnA9B/tw=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
 _c = ProfileView;
 ProfileView.propTypes = {
     user: (0, _propTypesDefault.default).object.isRequired,
@@ -48668,7 +48678,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp","@parcel/transformer-js/src/esmodule-helpers.js":"7ghYW","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4bzcd"}],"4OGiN":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp","@parcel/transformer-js/src/esmodule-helpers.js":"7ghYW","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4bzcd","react-router-dom":"9xmpe"}],"4OGiN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$73d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
