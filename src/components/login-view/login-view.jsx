@@ -4,9 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Container, Col, Row, Form, CardBody, CardTitle } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-
-
-
+import './login-view.scss';
 
 
 
@@ -52,51 +50,50 @@ const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Container >
-      <Row>
-        <Col>
-          <Card className="shadow p-4 mb-4 bg-white mt-5 border-0">
-            <CardBody>
-              <CardTitle className="card-title">Login</CardTitle>
-              <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formName">
-                  <Form.Label>Name:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUserName(e.target.value)}
-                    required
-                  />
-                </Form.Group>
+    <div className="login-container">
+      <Card className="login-card">
+        <Card.Body>
+          <Card.Title>
+            <h4 className="welcome-message">Welcome to</h4>
+            <h1 className="welcome-message">myFlix App</h1>
+          </Card.Title>
+          <div className="spacer"></div>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formName">
+              <Form.Control
+                type="text"
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
+                placeholder="Username"
+                required
+              />
+            </Form.Group>
+            <div className="spacer2"></div>
+            <Form.Group controlId="formPassword">
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+              />
+            </Form.Group>
 
-                <Form.Group controlId="formPassword">
-                  <Form.Label>Password:</Form.Label>
-                  <Form.Control
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </Form.Group>
+            <Button type="submit" className="login-button">
+              Login
+            </Button>
 
-                <Button type="submit" className="submit">
-                  Submit
-                </Button>
-                <Button type="signup"
-                  className="sign up"
-                  onClick={() => window.location.href = '/signup'}
-                >
-                  New User? Sign Up
-
-                </Button>
-              </Form>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+            <a href="/signup" className="signup-link">
+              New User? Sign Up
+            </a>
+          </Form>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
+
+
 
 export default LoginView;
 

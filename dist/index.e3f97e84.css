@@ -11,20 +11,56 @@
   padding: 4px 12px;
 }
 
-.movie-card {
-  box-shadow: 0 4px 8px #85ecea1a;
-}
-
-.main-view {
-  font-size: inherit;
-}
-
-.main-view .card {
+body, html {
+  background-color: #000;
   height: 100%;
+  margin: 0;
 }
 
-.logoutbutton {
-  margin-top: 20px;
+.welcome-message h1 {
+  font-size: 2rem;
+}
+
+.login-container {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  display: flex;
+}
+
+.login-card {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  min-height: 300px;
+  padding: 20px;
+  display: flex;
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+.spacer {
+  height: 30px;
+}
+
+.spacer2 {
+  height: 10px;
+}
+
+.form-group {
+  margin-top: 10px;
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.signup-link {
+  color: #007bff;
+  text-decoration: none;
 }
 
 :root, [data-bs-theme="light"] {

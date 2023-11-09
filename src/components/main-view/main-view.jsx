@@ -12,8 +12,8 @@ import Col from 'react-bootstrap/Col';
 
 import { Button, Container, Nav, Row } from 'react-bootstrap';
 
-import './main-view.scss';
-import "../../index.scss";
+//import './main-view.scss';
+//import "../../index.scss";
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -24,7 +24,7 @@ const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
   const [search, setSearch] = useState("");
-  // const [filteredMovies, setFilteredMovies] = useState({});
+
 
   const handleUpdateProfile = (updatedUserData) => {
 
@@ -56,26 +56,14 @@ const MainView = () => {
   }, [token]);
 
 
-  // if (!user) {
-  //   return <LoginView onLoggedIn={(user, token) => { setUser(user); setToken(token); }} />;
-  //  }
-
-
-  //if (!movies || movies.length === 0) {
-  //   return <div>The List is empty!</div>;
-  //  }
-
   return (
     <Router>
       <div className="main-view">
-        <NavigationBar
-          user={user} movies={movies} search={search} onLoggedOut={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}
-        />
-
+        {user && <NavigationBar user={user} movies={movies} search={search} onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }} />}
         <Row className="margin-top-custom justify-content-center mb-5">
           <Routes>
             <Route path="/login" element={
