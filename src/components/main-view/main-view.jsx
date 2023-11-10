@@ -65,7 +65,14 @@ const MainView = () => {
       .catch(error => console.error('Error fetching movies:', error));
   }, [token]);
 
-  //const movie = movies.find((m) => m.id === movieId);
+  useEffect(() => {
+    return () => {
+      // cleanup when exit app
+      setUser(null);
+      setToken(null);
+      localStorage.clear();
+    };
+  }, []);
 
   return (
     <Router>
