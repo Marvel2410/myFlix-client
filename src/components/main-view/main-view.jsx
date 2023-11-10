@@ -10,7 +10,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Col from 'react-bootstrap/Col';
 
 
+
 import { Button, Container, Nav, Row } from 'react-bootstrap';
+
 
 //import './main-view.scss';
 //import "../../index.scss";
@@ -110,12 +112,14 @@ const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <>
-                      {movies.map((movie) => (
-                        <Col xs={12} s={8} md={4} className="mb-5" key={movie.id}>
-                          <MovieCard
-                            movie={movie} token={token} user={user} setUser={setUser} />
-                        </Col>
-                      ))}
+                      <div className="movie-card-container mt-4">
+                        {movies.map((movie) => (
+                          <Col xs={6} sm={6} md={4} lg={3} className="mb-4" key={movie.id}>
+                            <MovieCard
+                              movie={movie} token={token} user={user} setUser={setUser} />
+                          </Col>
+                        ))}
+                      </div>
                     </>
                   )}
                 </>

@@ -1,6 +1,17 @@
+.movie-card-container {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  display: flex;
+}
+
 .movie-card {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  flex: 1 0 calc(33.33% - 20px);
+  max-width: 100%;
+}
+
+.movie-card .card-img-top {
+  max-height: 500px;
 }
 
 .back-button {
@@ -59,6 +70,28 @@ body, html {
 .signup-link {
   color: #007bff;
   text-decoration: none;
+}
+
+.navbar {
+  background-color: #333;
+  justify-content: space-between;
+  padding: 10px;
+  display: flex;
+}
+
+.nav-left, .nav-right {
+  align-items: center;
+  display: flex;
+}
+
+.nav-link {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
 }
 
 body, html {
