@@ -44,12 +44,10 @@ const MovieCard = ({ movie, token, user, favoriteMovies, removeFromFavorites }) 
       }
     };
 
-
     const heartIcon = document.getElementById(storageKey);
     if (heartIcon) {
       heartIcon.addEventListener('click', toggleFavorite);
     }
-
 
     return () => {
       if (heartIcon) {
@@ -69,7 +67,6 @@ const MovieCard = ({ movie, token, user, favoriteMovies, removeFromFavorites }) 
     </Card>
   );
 };
-
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({

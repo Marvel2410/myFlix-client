@@ -103,3 +103,4 @@ MovieView.propTypes = {
 
 export default MovieView;
 
+

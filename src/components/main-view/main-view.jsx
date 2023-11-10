@@ -69,8 +69,6 @@ const MainView = () => {
       .catch(error => console.error('Error fetching movies:', error));
   }, [token]);
 
-  //const movie = movies.find((m) => m.id === movieId);
-
   return (
     <Router>
       <div className="main-view">
@@ -134,6 +132,7 @@ const MainView = () => {
                               user={user}
                               favoriteMovies={favoriteMovies}
                               removeFromFavorites={removeFromFavorites}
+
                               setUser={setUser}
                               username={user.Username}
                             />
@@ -145,7 +144,7 @@ const MainView = () => {
                 </>
               }
             />
-            {/* Update:: changing the prop to movies not movie. We will pass in our entire list here and filter in that component. */}
+
             <Route
               path="/movies/:movieId"
               element={<MovieView movies={movies} username={user ? user.Username : null} token={token} />}
