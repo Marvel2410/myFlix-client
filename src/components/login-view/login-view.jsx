@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import { Container, Col, Row, Form, CardBody, CardTitle } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './login-view.scss';
+import myFlixLogo from '../../img/myflixlogo.png';
 
 
 
@@ -54,10 +55,9 @@ const LoginView = ({ onLoggedIn }) => {
       <Card className="login-card">
         <Card.Body>
           <Card.Title>
-            <h4 className="welcome-message">Welcome to</h4>
-            <h1 className="welcome-message">myFlix App</h1>
+            <img src={myFlixLogo} alt="logo" className="myflix-logo" />
           </Card.Title>
-          <div className="spacer"></div>
+
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formName">
               <Form.Control
@@ -68,7 +68,7 @@ const LoginView = ({ onLoggedIn }) => {
                 required
               />
             </Form.Group>
-            <div className="spacer2"></div>
+            <div className="spacer"></div>
             <Form.Group controlId="formPassword">
               <Form.Control
                 type="password"
