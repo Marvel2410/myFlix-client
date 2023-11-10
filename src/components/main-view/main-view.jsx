@@ -9,13 +9,8 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 
-
-
 import { Button, Container, Nav, Row } from 'react-bootstrap';
 
-
-//import './main-view.scss';
-//import "../../index.scss";
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -24,6 +19,7 @@ const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [movies, setMovies] = useState([]);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+
 
   const [search, setSearch] = useState("");
 
@@ -57,6 +53,7 @@ const MainView = () => {
       .catch(error => console.error('Error fetching movies:', error));
   }, [token]);
 
+  //const movie = movies.find((m) => m.id === movieId);
 
   return (
     <Router>
@@ -116,7 +113,11 @@ const MainView = () => {
                         {movies.map((movie) => (
                           <Col xs={6} sm={6} md={4} lg={3} className="mb-4" key={movie.id}>
                             <MovieCard
-                              movie={movie} token={token} user={user} setUser={setUser} />
+                              movie={movie}
+                              token={token}
+                              user={user}
+                              setUser={setUser}
+                              username={user.Username} />
                           </Col>
                         ))}
                       </div>

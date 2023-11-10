@@ -14,3 +14,16 @@
   max-height: 500px;
 
 }
+
+.movie-card .heart-icon {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.movie-card.favorite .heart-icon::before {
+  content: '\2665';
+}
+
+.movie-card .heart-icon::before {
+  content: '\2661';
+}

@@ -83,12 +83,9 @@ const ProfileView = ({ user, username, onUpdateProfile, onLogout }) => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('User deregistered:', data);
-        navigate('/login');
-
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-
+        navigate('/login');
         onLogout();
       })
       .catch(error => {
@@ -110,6 +107,7 @@ const ProfileView = ({ user, username, onUpdateProfile, onLogout }) => {
 
       if (response.ok) {
         setFavoriteMovies(favoriteMovies.filter(movie => movie.Title !== movieTitle)); // Update the favoriteMovies state
+        localStorage.removeItem(`favorite_${movieTitle}`);
       }
     } catch (error) {
       console.error('Error removing movie from favorites:', error);

@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './movie-view.scss';
+import MovieCard from '../movie-card/movie-card';
 
-const MovieView = ({ movies, token, username }) => {
+const MovieView = ({ movies, token, username, favoriteMovies, user, removeFromFavorites }) => {
   const { movieId } = useParams();
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    // Check if the movie is in the user's favorites
     const isMovieFavorite = movies.some(movie => movie.title === movieId);
     setIsFavorite(isMovieFavorite);
   }, [movies, movieId]);
@@ -31,7 +31,7 @@ const MovieView = ({ movies, token, username }) => {
     }
   };
 
-  const removeFromFavorites = async (movieTitle) => {
+  const handleRemoveFromFavorites = async (movieTitle) => {
     try {
       const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${movieTitle}`, {
         method: 'DELETE',
@@ -42,12 +42,12 @@ const MovieView = ({ movies, token, username }) => {
 
       if (response.ok) {
         setIsFavorite(false);
+        removeFromFavorites(movieTitle);
       }
     } catch (error) {
       console.error('Error removing movie from favorites:', error);
     }
   };
-
 
   const movie = movies.find((m) => m.id === movieId);
 
@@ -82,10 +82,12 @@ const MovieView = ({ movies, token, username }) => {
         <button onClick={() => addToFavorites(movie.title)}>
           Add to Favorites
         </button>
-        <button onClick={() => removeFromFavorites(movie.title)}>
+        <button onClick={() => handleRemoveFromFavorites(movie.title)}>
           Remove from Favorites
         </button>
+
       </div>
+
     </div>
   );
 };
@@ -94,7 +96,9 @@ MovieView.propTypes = {
   movies: PropTypes.array.isRequired,
   token: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
-}
+  favoriteMovies: PropTypes.array.isRequired,
+  removeFromFavorites: PropTypes.func.isRequired,
+};
 
 export default MovieView;
 
