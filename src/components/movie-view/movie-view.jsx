@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './movie-view.scss';
-import MovieCard from '../movie-card/movie-card';
+
 
 const MovieView = ({ movies, token, username, favoriteMovies, user, removeFromFavorites }) => {
   const { movieId } = useParams();

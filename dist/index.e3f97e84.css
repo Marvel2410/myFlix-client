@@ -142,6 +142,27 @@ body, html {
   text-decoration: underline;
 }
 
+.favorites-container {
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 20px;
+  display: flex;
+}
+
+.favorites-container .favorite-movie-item {
+  color: #fff;
+  text-align: center;
+  background-color: #00f;
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.favorites-container .favorite-movie-item button {
+  margin-top: 10px;
+}
+
 body, html {
   background-color: #000;
   height: 100%;
