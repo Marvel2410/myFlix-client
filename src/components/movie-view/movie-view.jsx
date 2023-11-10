@@ -12,7 +12,7 @@ const MovieView = ({ movies, token, username, favoriteMovies, user, removeFromFa
   useEffect(() => {
     const isMovieFavorite = movies.some(movie => movie.title === movieId);
     setIsFavorite(isMovieFavorite);
-  }, [movies, movieId]);
+  }, [favoriteMovies, movieId]);
 
   const addToFavorites = async (movieTitle) => {
     try {
@@ -97,6 +97,7 @@ MovieView.propTypes = {
   token: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   favoriteMovies: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
   removeFromFavorites: PropTypes.func.isRequired,
 };
 

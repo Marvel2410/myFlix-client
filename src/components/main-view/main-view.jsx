@@ -23,11 +23,27 @@ const MainView = () => {
 
   const [search, setSearch] = useState("");
 
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
+
+  const removeFromFavorites = async (movieTitle) => {
+    try {
+      const response = await fetch(`https://movies-myflix-85528af4e39c.herokuapp.com/users/${username}/favorites/${movieTitle}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        removeFromFavorites(movieTitle);
+      }
+    } catch (error) {
+      console.error('Error removing movie from favorites:', error);
+    }
+  };
+
 
   const handleUpdateProfile = (updatedUserData) => {
-
-
-
   };
 
 
@@ -116,8 +132,11 @@ const MainView = () => {
                               movie={movie}
                               token={token}
                               user={user}
+                              favoriteMovies={favoriteMovies}
+                              removeFromFavorites={removeFromFavorites}
                               setUser={setUser}
-                              username={user.Username} />
+                              username={user.Username}
+                            />
                           </Col>
                         ))}
                       </div>
