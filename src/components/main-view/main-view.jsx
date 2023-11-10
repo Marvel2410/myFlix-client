@@ -11,7 +11,6 @@ import Col from 'react-bootstrap/Col';
 
 import { Button, Container, Nav, Row } from 'react-bootstrap';
 
-
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
@@ -19,7 +18,6 @@ const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [movies, setMovies] = useState([]);
   const [token, setToken] = useState(storedToken ? storedToken : null);
-
 
   const [search, setSearch] = useState("");
 
@@ -42,10 +40,8 @@ const MainView = () => {
     }
   };
 
-
   const handleUpdateProfile = (updatedUserData) => {
   };
-
 
   useEffect(() => {
     if (!token) return;
@@ -68,6 +64,8 @@ const MainView = () => {
       })
       .catch(error => console.error('Error fetching movies:', error));
   }, [token]);
+
+  //const movie = movies.find((m) => m.id === movieId);
 
   return (
     <Router>
@@ -132,7 +130,6 @@ const MainView = () => {
                               user={user}
                               favoriteMovies={favoriteMovies}
                               removeFromFavorites={removeFromFavorites}
-
                               setUser={setUser}
                               username={user.Username}
                             />
@@ -144,7 +141,7 @@ const MainView = () => {
                 </>
               }
             />
-
+            {/* Update:: changing the prop to movies not movie. We will pass in our entire list here and filter in that component. */}
             <Route
               path="/movies/:movieId"
               element={<MovieView movies={movies} username={user ? user.Username : null} token={token} />}
@@ -154,14 +151,12 @@ const MainView = () => {
               element={<ProfileView user={user} token={token} movie={movies} setUser={setUser} />}
             />
 
-
           </Routes>
         </Row>
       </div>
     </Router>
   );
 };
-
 
 MainView.propTypes = {
   onLoggedOut: PropTypes.func
