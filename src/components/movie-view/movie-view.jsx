@@ -52,28 +52,30 @@ const MovieView = ({ movies, token, username, favoriteMovies, user, removeFromFa
   const movie = movies.find((m) => m.id === movieId);
 
   return (
-    <div className="container text-center">
+    <div className="container">
       <div className="row">
-        <div className="col-md-6 mx-auto">
+        <div className="col-md-6">
+          <div className="spacer"></div>
           <img className="img-fluid" src={movie.image} alt={movie.title} />
         </div>
-      </div>
-      <div>
-        <span>Title: </span>
-        <span>{movie.title}</span>
-
-      </div>
-      <div>
-        <span>Description: </span>
-        <span>{movie.description}</span>
-      </div>
-      <div>
-        <span>Director: </span>
-        <span>{movie.director}</span>
-      </div>
-      <div>
-        <span>Genre: </span>
-        <span>{movie.genre}</span>
+        <div className="col-md-6">
+          <div>
+            <span>Title: </span>
+            {movie.title}
+          </div>
+          <div>
+            <span>Description: </span>
+            {movie.description}
+          </div>
+          <div>
+            <span>Director: </span>
+            {movie.director}
+          </div>
+          <div>
+            <span>Genre: </span>
+            {movie.genre}
+          </div>
+        </div>
       </div>
       <div className="button">
         <Link to="/"> Back </Link>
@@ -85,12 +87,10 @@ const MovieView = ({ movies, token, username, favoriteMovies, user, removeFromFa
         <button onClick={() => handleRemoveFromFavorites(movie.title)}>
           Remove from Favorites
         </button>
-
       </div>
-
     </div>
   );
-};
+}
 
 MovieView.propTypes = {
   movies: PropTypes.array.isRequired,

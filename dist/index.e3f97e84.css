@@ -27,12 +27,47 @@
   content: "♡";
 }
 
-.back-button {
-  color: #f5f5f5;
-  background-color: #1e90ff;
-  border: #8a2be2;
-  border-radius: 4px;
-  padding: 4px 12px;
+.container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  display: flex;
+}
+
+.container .spacer {
+  height: 40px;
+}
+
+.container .row {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.container .row .col-md-6 {
+  text-align: left;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.container .row .col-md-6 .img-fluid {
+  border: 2px solid #fff;
+  border-radius: 8px;
+  max-width: 50%;
+  height: auto;
+  margin: 20px auto 0;
+  display: block;
+}
+
+.container .row .col-md-6 span {
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.button {
+  margin-top: 10px;
 }
 
 body, html {
