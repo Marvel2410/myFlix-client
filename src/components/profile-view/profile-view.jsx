@@ -118,72 +118,75 @@ const ProfileView = ({ user, username, onUpdateProfile, onLogout }) => {
   };
 
   return (
-    <div className="container">
+    <div className="profile-view-container">
       <div className="form-container">
         <Card style={{ width: '18rem' }}>
-          <Card.Body>
-            <Card.Title>Profile</Card.Title>
-            <Form>
-              <Form.Group controlId="formUsername">
-                <Form.Label>Username:</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={newUsername}
-                  onChange={(e) => setNewUsername(e.target.value)}
-                  required
-                  minLength="3"
-                />
-              </Form.Group>
+          <div>
+            <Card.Body>
+              <Card.Title>Profile</Card.Title>
+              <Form>
+                <Form.Group controlId="formUsername">
+                  <Form.Label>Username:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={newUsername}
+                    onChange={(e) => setNewUsername(e.target.value)}
+                    required
+                    minLength="3"
+                  />
+                </Form.Group>
 
-              <Form.Group controlId="formPassword">
-                <Form.Label>New Password:</Form.Label>
-                <Form.Control
-                  type="password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              </Form.Group>
+                <Form.Group controlId="formPassword">
+                  <Form.Label>New Password:</Form.Label>
+                  <Form.Control
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Form.Group controlId="formPasswordConfirm">
-                <Form.Label>Confirm New Password:</Form.Label>
-                <Form.Control
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </Form.Group>
+                <Form.Group controlId="formPasswordConfirm">
+                  <Form.Label>Confirm New Password:</Form.Label>
+                  <Form.Control
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Form.Group controlId="formEmail">
-                <Form.Label>Email:</Form.Label>
-                <Form.Control
-                  type="email"
-                  value={newEmail}
-                  onChange={(e) => setNewEmail(e.target.value)}
-                />
-              </Form.Group>
+                <Form.Group controlId="formEmail">
+                  <Form.Label>Email:</Form.Label>
+                  <Form.Control
+                    type="email"
+                    value={newEmail}
+                    onChange={(e) => setNewEmail(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Form.Group controlId="formBirthday">
-                <Form.Label>Date of Birth:</Form.Label>
-                <Form.Control
-                  type="date"
-                  value={newBirthday}
-                  onChange={(e) => setNewBirthday(e.target.value)}
-                />
-              </Form.Group>
+                <Form.Group controlId="formBirthday">
+                  <Form.Label>Date of Birth:</Form.Label>
+                  <Form.Control
+                    type="date"
+                    value={newBirthday}
+                    onChange={(e) => setNewBirthday(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Button variant="primary" onClick={handleUpdate}>
-                Update
-              </Button>
+                <Button variant="primary" onClick={handleUpdate}>
+                  Update
+                </Button>
 
-              <Button variant="danger" onClick={handleDeregister}>
-                Deregister
-              </Button>
-            </Form>
-          </Card.Body>
+                <Button variant="danger" onClick={handleDeregister}>
+                  Deregister
+                </Button>
+              </Form>
+            </Card.Body>
+          </div>
         </Card>
       </div>
 
       <div className="favorites-container">
+
         <Form.Group controlId="formFavoriteMovies">
           <Form.Label>Favorite Movies:</Form.Label>
           {favoriteMovies.map(movie => (
@@ -193,12 +196,13 @@ const ProfileView = ({ user, username, onUpdateProfile, onLogout }) => {
                 <Button variant="danger" size="sm" onClick={() => removeFromFavorites(movie.Title)}>
                   Remove
                 </Button>
+
               </Card.Body>
             </Card>
           ))}
         </Form.Group>
       </div>
-    </div>
+    </div >
   );
 };
 

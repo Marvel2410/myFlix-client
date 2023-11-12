@@ -129,6 +129,7 @@ body, html {
 }
 
 .navbar {
+  z-index: 1;
   background-color: #333;
   justify-content: space-between;
   padding: 10px;
@@ -150,10 +151,24 @@ body, html {
   text-decoration: underline;
 }
 
+.profile-view-container {
+  border: 50px solid #000;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin-top: 40px;
+  display: flex;
+}
+
+.form-container {
+  border: 2px solid #00f;
+}
+
 .favorites-container {
+  text-align: center;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
   display: flex;
 }
@@ -162,8 +177,9 @@ body, html {
   color: #fff;
   text-align: center;
   background-color: #00f;
+  border: 2px solid red;
   width: 300px;
-  margin-bottom: 20px;
+  margin: 0 10px 20px;
   padding: 10px;
 }
 
