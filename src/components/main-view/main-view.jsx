@@ -128,15 +128,13 @@ const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <>
-                      <div className="movie-card-container mt-4">
+                      <div className="movie-card-container mt-4 d-flex flex-wrap justify-content-center">
                         {movies.map((movie) => (
                           <Col xs={6} sm={6} md={4} lg={3} className="mb-4" key={movie.id}>
                             <MovieCard
                               movie={movie}
                               token={token}
                               user={user}
-                              favoriteMovies={favoriteMovies}
-                              removeFromFavorites={removeFromFavorites}
                               setUser={setUser}
                               username={user.Username}
                             />

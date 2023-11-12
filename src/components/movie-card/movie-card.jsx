@@ -6,30 +6,23 @@ import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
 const MovieCard = ({ movie }) => {
-  const [clicked, setClicked] = useState(false);
 
-  const handleClick = () => {
-    setClicked(!clicked);
-  };
+
 
   return (
-    <Card
-      key={movie.id}
-      className={`h-100 movie-card ${clicked ? 'clicked' : ''}`}
-      onClick={handleClick}
-    >
-      <div className="card-img-container">
-        <Card.Img className="card-img-top" variant="top" src={movie.image} />
-      </div>
-      <div className="card-content">
-        <Card.Body className="card-body">
-          <Card.Title className="card-title">{movie.title}</Card.Title>
-          <Link to={`/movies/${movie.id}`}>Open</Link>
-        </Card.Body>
-      </div>
+    <Card key={movie.id} className="h-100 movie-card">
+      <Card.Img variant="top" src={movie.image} />
+      <Card.Body>
+        <Card.Title>{movie.title}</Card.Title>
+        <Link to={`/movies/${movie.id}`}>Open</Link>
+      </Card.Body>
+
+
+
     </Card>
   );
 };
+
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({

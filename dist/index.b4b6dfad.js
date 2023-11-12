@@ -27303,7 +27303,7 @@ const MainView = ()=>{
                                         children: "The list is empty!"
                                     }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                            className: "movie-card-container mt-4",
+                                            className: "movie-card-container mt-4 d-flex flex-wrap justify-content-center",
                                             children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                                     xs: 6,
                                                     sm: 6,
@@ -27314,8 +27314,6 @@ const MainView = ()=>{
                                                         movie: movie,
                                                         token: token,
                                                         user: user,
-                                                        favoriteMovies: favoriteMovies,
-                                                        removeFromFavorites: removeFromFavorites,
                                                         setUser: setUser,
                                                         username: user.Username
                                                     }, void 0, false, void 0, void 0)
@@ -27337,7 +27335,7 @@ const MainView = ()=>{
                                 }, void 0, false, void 0, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 152,
+                                lineNumber: 150,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27350,7 +27348,7 @@ const MainView = ()=>{
                                 }, void 0, false, void 0, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 156,
+                                lineNumber: 154,
                                 columnNumber: 13
                             }, undefined)
                         ]
@@ -27407,73 +27405,48 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _movieCardScss = require("./movie-card.scss");
-var _s = $RefreshSig$();
 const MovieCard = ({ movie })=>{
-    _s();
-    const [clicked, setClicked] = (0, _react.useState)(false);
-    const handleClick = ()=>{
-        setClicked(!clicked);
-    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-        className: `h-100 movie-card ${clicked ? "clicked" : ""}`,
-        onClick: handleClick,
+        className: "h-100 movie-card",
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "card-img-container",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
-                    className: "card-img-top",
-                    variant: "top",
-                    src: movie.image
-                }, void 0, false, {
-                    fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 22,
-                    columnNumber: 9
-                }, undefined)
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
+                variant: "top",
+                src: movie.image
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 21,
+                lineNumber: 14,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "card-content",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
-                    className: "card-body",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                            className: "card-title",
-                            children: movie.title
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 26,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                            to: `/movies/${movie.id}`,
-                            children: "Open"
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 27,
-                            columnNumber: 11
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 25,
-                    columnNumber: 9
-                }, undefined)
-            }, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                        children: movie.title
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 16,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                        to: `/movies/${movie.id}`,
+                        children: "Open"
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 17,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 24,
+                lineNumber: 15,
                 columnNumber: 7
             }, undefined)
         ]
     }, movie.id, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 16,
+        lineNumber: 13,
         columnNumber: 5
     }, undefined);
 };
-_s(MovieCard, "NL05b5J4z4O/U6wEzhVGl+YEdv8=");
 _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
