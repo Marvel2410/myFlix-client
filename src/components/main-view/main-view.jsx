@@ -83,13 +83,17 @@ const MainView = () => {
 
   const handleGenreChange = e => {
     const genre = e.target.value;
+
     if (genre === '') {
       setFilteredMovies(movies);
     } else {
       const filtered = movies.filter(movie => movie.genre === genre);
       setFilteredMovies(filtered);
     }
+
+    setSelectedGenre(genre);
   };
+
   return (
     <Router>
       <div className="main-view">
