@@ -27319,6 +27319,13 @@ const MainView = ()=>{
                                     }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                         children: [
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                                md: 7,
+                                                className: "mx-auto mt-4 p-3",
+                                                style: {
+                                                    background: "blue",
+                                                    borderRadius: "5px",
+                                                    border: "2px solid white"
+                                                },
                                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
                                                     controlId: "genreFilter",
                                                     children: [

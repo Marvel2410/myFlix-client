@@ -144,7 +144,7 @@ const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <>
-                      <Col>
+                      <Col md={7} className="mx-auto mt-4 p-3" style={{ background: 'blue', borderRadius: '5px', border: '2px solid white' }}>
                         <Form.Group controlId="genreFilter">
                           <Form.Label>Filter by Genre:</Form.Label>
                           <Form.Control as="select" onChange={handleGenreChange} value={selectedGenre}>
