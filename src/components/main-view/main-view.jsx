@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 
-import { Button, Container, Nav, Row } from 'react-bootstrap';
+import { Button, Container, Nav, Form, Row } from 'react-bootstrap';
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -74,6 +74,22 @@ const MainView = () => {
     };
   }, []);
 
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState('');
+
+  useEffect(() => {
+    setFilteredMovies(movies);
+  }, [movies]);
+
+  const handleGenreChange = e => {
+    const genre = e.target.value;
+    if (genre === '') {
+      setFilteredMovies(movies);
+    } else {
+      const filtered = movies.filter(movie => movie.genre === genre);
+      setFilteredMovies(filtered);
+    }
+  };
   return (
     <Router>
       <div className="main-view">
@@ -128,11 +144,24 @@ const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <>
+                      <Col>
+                        <Form.Group controlId="genreFilter">
+                          <Form.Label>Filter by Genre:</Form.Label>
+                          <Form.Control as="select" onChange={handleGenreChange} value={selectedGenre}>
+                            <option value="">All Genres</option>
+                            {Array.from(new Set(movies.map(movie => movie.genre))).map(genre => (
+                              <option key={genre} value={genre}>
+                                {genre}
+                              </option>
+                            ))}
+                          </Form.Control>
+                        </Form.Group>
+                      </Col>
                       <div className="movie-card-container mt-4 d-flex flex-wrap justify-content-center">
-                        {movies.map((movie) => (
+                        {filteredMovies.map((movie) => (
                           <Col xs={6} sm={6} md={4} lg={3} className="mb-4" key={movie.id}>
                             <MovieCard
-                              movie={movie}
+                              movies={[movie]}
                               token={token}
                               user={user}
                               setUser={setUser}
