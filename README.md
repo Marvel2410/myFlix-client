@@ -21,7 +21,7 @@ Technologies Used:
 - Heroku
 
 Author:
-Stephanie Duda
+Stephanie Duda (tippingvelvet24@gmail.com)
 
 Acknowledgments:
 IMDB for director/additional movie details
