@@ -1,9 +1,13 @@
 .movie-card {
   text-align: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 300px;
+  height: 500px;
   margin: 0 auto 20px;
   transition: transform .3s ease-out;
   display: flex;
@@ -16,8 +20,8 @@
 }
 
 .movie-card .card-img-top {
-  width: 100%;
-  height: auto;
+  width: 300px;
+  height: 400px;
   transition: transform .3s ease-out;
 }
 
@@ -33,6 +37,12 @@
 
 .movie-card a:hover {
   background-color: #0056b3;
+}
+
+.movie-card .card-body {
+  flex-grow: 1;
+  padding: 10px;
+  overflow: auto;
 }
 
 .container {
