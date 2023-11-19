@@ -133,6 +133,7 @@ const MainView = () => {
                   ) : (
                     <Col md={6}>
                       <SignupView />
+                      <LoginView></LoginView>
                     </Col>
                   )}
                 </>
