@@ -8,8 +8,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "postbuild": "cp src/index.html build/index.html"
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
